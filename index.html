@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Portfolio Website Using HTML & CSS | Codehal</title>
+    <link rel="preload" href="background.jpg" as="image" />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      as="style"
+    />
+    <link rel="stylesheet" href="./new.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <header class="animated">
+        <a href="#" class="logo">Portfolio.</a>
+        <div class="navbar">
+          <a href="#" class="active">Home</a>
+          <a href="#">About</a>
+          <a href="#">Portfolio</a>
+          <a href="#">Services</a>
+          <a href="#">Conatct</a>
+        </div>
+      </header>
+      <section class="home animated">
+        <div class="home-detail">
+          <h1>Mohib Ali</h1>
+          <h2>Frontend Developer</h2>
+          <div class="summary">
+            <p>
+              Proficient in HTML, CSS, JavaScript, and ReactJS for creating
+              responsive and dynamic web applications. Currently expanding into
+              back-end development with ExpressJS, NextJS, and MongoDB to build
+              full-stack solutions.
+            </p>
+          </div>
+          
+          <div class="download-social">
+            <button class="btn" id="btn">Download CV</button>
+            <div class="social-icons">
+              <a href="https://github.com/CoderMohib" target="_blank"
+                ><i class="ri-github-fill"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/in/mohib-ali-80b19b294"
+                target="_blank"
+                ><i class="ri-linkedin-fill"></i
+              ></a>
+              <a
+                href="https://www.facebook.com/profile.php?id=100009561216453"
+                target="_blank"
+                ><i class="ri-facebook-circle-fill"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div class="home-img">
+          <div class="image-box">
+            <img src="./Assets/home.png" alt="" />
+          </div>
+        </div>
+      </section>
+    </div>
+    <script>
+      document.getElementById("btn").addEventListener("click", () => {
+        const link = document.createElement("a");
+        link.href = "./Assets/MohibResume.pdf";
+        link.download = "MohibResume.pdf";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      });
+    </script>
+  </body>
+</html>

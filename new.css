@@ -1,0 +1,24 @@
+
+  /* Custom scrollbar */
+  .summary::-webkit-scrollbar {
+    width: 7px;  /* Set the width of the scrollbar */
+  }
+  
+  /* The track (background) of the scrollbar with a blur effect */
+  .summary::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+    backdrop-filter: blur(5px); /* Apply blur effect */
+    border-radius: 10px; /* Optional: Add rounded corners */
+  }
+  
+  /* The draggable part of the scrollbar (the thumb) */
+  .summary::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.5); /* Set the thumb color to blue */
+    border-radius: 10px; /* Optional: Add rounded corners */
+  }
+  
+  /* Hover effect on the thumb */
+  .summary::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.1); /* Change the thumb color on hover */
+  }
+  
