@@ -17,24 +17,43 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./media.css" />
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init({
+          publicKey: "u7vBmFzitd3j-DlJn",
+        });
+      })();
+    </script>
   </head>
 
   <body>
     <div class="container">
       <header class="animated">
-        <a href="#" class="logo">Portfolio.</a>
-        <div class="navbar">
+        <p class="logo">Portfolio.</p>
+        <div class="menu-toggle" id="menu-toggle">
+          <i class="ri-menu-line"></i>
+        </div>
+        <div class="navbar" id="navbar">
+          <div class="close-togle" id="close-toggle"><i class="ri-close-large-line"></i></div>
           <a href="#Home" class="active">Home</a>
           <a href="#About">About</a>
           <a href="#Portfolio">Portfolio</a>
           <a href="#Services">Services</a>
-          <a href="#Contact" >Contact</a>
+          <a href="#Contact">Contact</a>
         </div>
       </header>
       <section id="Home" class="home section animated">
-        <div class="home-detail">
-          <h1>Mohib Ali</h1>
-          <h2>Frontend <span>Developer</span></h2>
+        <div class="home-detail animated-left">
+          <div class="home-detail-header">
+            <h1>Mohib Ali</h1>
+            <h2>Frontend <span>Developer</span></h2>
+          </div>
+
           <div class="summary">
             <p>
               Proficient in HTML, CSS, JavaScript, and ReactJS for creating
@@ -63,15 +82,15 @@
             </div>
           </div>
         </div>
-        <div class="home-img">
+        <div class="home-img animated-right">
           <div class="image-box">
-            <img src="./Assets/home.png" alt="" />
+            <img src="./Assets/home.png" alt="Mohib Ali" />
           </div>
         </div>
       </section>
 
       <!-- Contact -->
-      <section id="Contact" class="contact section animated">
+      <section id="Contact" class="contact section animated-contact">
         <div class="contact-container">
           <div class="contact-box">
             <h2>Let's Work Together</h2>
@@ -103,21 +122,48 @@
             </div>
           </div>
           <div class="contact-box">
-            <form action="">
-              <h2 class="heading" >Contact<span id="text"></span></h2>
+            <form id="contact-form">
+              <h2 class="heading">Contact<span id="text"></span></h2>
               <div class="field-box">
-                <input type="text" placeholder="Full Name" required>
-                <input type="email" placeholder="Email Address" required>
-                <input type="text" placeholder="Phone Number" required>
-                <input type="text" placeholder="Email Subject" required>
-                <textarea name="" id="" placeholder="Your Message" required></textarea>
+                <input
+                  type="text"
+                  id="fullName"
+                  placeholder="Full Name"
+                  required
+                />
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Email Address"
+                  required
+                />
+                <input
+                  type="text"
+                  id="phone"
+                  placeholder="Phone Number"
+                  required
+                />
+                <input type="text" id="subject" placeholder="Email Subject" />
+                <textarea
+                  id="message"
+                  placeholder="Your Message"
+                  required
+                ></textarea>
               </div>
               <button type="submit" class="btn">Send Message</button>
             </form>
           </div>
         </div>
+        <div id="success-popup" class="popup">
+          <div class="popup-content">
+            <h2>Message Sent Successfully!</h2>
+            <p>Thank you for reaching out. I'll get back to you soon!</p>
+            <button onclick="closePopup()">OK</button>
+          </div>
+        </div>
       </section>
     </div>
+
     <script src="script.js"></script>
   </body>
 </html>
