@@ -6,21 +6,17 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-body {
-  height: 100vh;
+html,body {
+  height: calc(var(--vh, 1vh) * 100);
   background: url("./Assets/background.jpg") no-repeat center / cover;
-  padding: 50px 5%;
+  overflow: hidden;
 }
 
 .container {
   position: relative;
   height: 100%;
   background-color: rgb(255, 255, 255, 0.1);
-  border: 2px solid rgb(255, 255, 255, 0.2);
-  border-radius: 30px;
-  backdrop-filter: blur(30px);
-  transform: scale(0);
-  animation: zoom-in .9s ease forwards;
+  backdrop-filter: blur(2rem);
 }
 
 header {
@@ -28,31 +24,54 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 25px 5%;
+  height: 6rem;
+  padding: 1.75rem 5%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 100;
 }
+.menu-toggle {
+  display: none;
+  font-size: clamp(1.3rem,3vw,1.8rem);
+  cursor: pointer;
+  color: #7a04eb;
+}
 .animated {
-  transform: translateY(30px);
   opacity: 0;
   animation: slide-in 0.5s ease forwards;
-  animation-delay: 0.9s;
+  animation-delay: 0.4s;
 }
-
+.animated-right{
+  opacity: 0;
+  transform: translateX(2rem);
+  animation: slide-left 0.5s ease forwards;
+  animation-delay: 0.6s;
+}
+.animated-left{
+  opacity: 0;
+  transform: translateX(-2rem);
+  animation: slide-left 0.5s ease forwards;
+  animation-delay: 0.6s;
+}
+.animated-contact {
+  transform: translateY(2rem);
+  opacity: 0;
+  animation: slide-in 0.5s ease forwards;
+}
 .logo {
-  font-size: 25px;
+  font-size: clamp(1.5rem,2vw,2.5rem);
   color: #7a04eb;
   text-decoration: none;
   font-weight: 600;
 }
 .navbar a {
-  font-size: 18px;
+  width: fit-content;
+  font-size: 1.1rem;
   color: #fff;
   text-decoration: none;
   font-weight: 500;
-  margin-left: 35px;
+  margin-left: 2.1rem;
   border-bottom: 2px solid transparent;
   transition: all 0.5s ease;
 }
@@ -60,36 +79,43 @@ header {
 .navbar a.active {
   border-color: #fff;
 }
+.close-togle{
+  display: none;
+}
 .home {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 100%;
-  gap: 50px;
-  padding: 50px 5% 0;
+  gap: 3.5rem;
+  padding: 3.3rem 5% 0;
   color: #fff;
 }
-.home-detail h1 {
-  font-size: 2.5rem;
+
+.home-detail-header h1 {
+  font-size: clamp(1.3rem, 2.5vw, 2.2rem); 
   line-height: 1;
 }
-.home-detail h2 {
+.home-detail-header h2 {
   font-weight: 500;
-  font-size: 29px;
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
 }
 .home-detail p {
-  margin: 10px 0 20px;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  margin: 0.7rem 0 1rem;
 }
 .home-detail .download-social {
   display: flex;
   align-items: center;
+  margin-top: 2rem;
 }
 
 .btn {
   display: inline-block;
-  padding: 10px 30px;
+  padding: 0.8rem 1.75rem;
   background: #fff;
   border: 2px solid #fff;
-  border-radius: 40px;
+  border-radius: 2.25rem;
   box-shadow: 0 0 4px #fff;
   color: #333;
   text-decoration: none;
@@ -103,17 +129,17 @@ header {
   color: #fff;
 }
 .home-detail .social-icons {
-  margin-left: 20px;
+  margin-left: 1.75rem;
 }
 .home-detail .social-icons a {
   display: inline-flex;
-  padding: 8px;
+  padding: 0.6rem;
   border: 2px solid #fff;
   border-radius: 50%;
-  font-size: 20px;
+  font-size: 1.4rem;
   color: #fff;
   text-decoration: none;
-  margin: 0 8px;
+  margin: 0 0.4rem;
   transition: 0.5s;
 }
 
@@ -124,8 +150,8 @@ header {
 }
 .home-img .image-box {
   position: relative;
-  width: 28vw;
-  height: 28vw;
+  width: clamp(200px, 28vw, 400px);
+  height: clamp(200px, 28vw, 400px); 
   border: 2px solid #fff;
   border-radius: 50%;
   box-shadow: 0 0 20px #fff;
@@ -144,9 +170,8 @@ header {
 .contact {
   display: flex;
   align-items: center;
-  height: 100%;
-  gap: 50px;
-  padding: 50px 5% 0;
+  gap: 3.5rem;
+  padding: 3.3rem 5% 0;
   color: #fff;
 }
 .contact-container {
@@ -165,12 +190,12 @@ header {
   font-size: 0.9rem;
 }
 .contact-box .desc{
-  margin: 1.5rem 0 2.5rem;
+  margin: 1.2rem 0 2rem;
 }
 .contact-box .contact-detail{
   display: flex;
   align-items: center;
-  margin: 0.5rem 0;
+  margin: 0.2rem 0;
 }
 .contact-detail i{
   display: inline-flex;
@@ -228,9 +253,10 @@ span{
 }
 .contact-box .field-box input:focus,
 .contact-box .field-box textarea:focus{
-  border: 2px solid #333;
+  border: 2px solid #7a04eb;
+  box-shadow: 0.1rem 0.1rem 0.2rem #7a04eb;
   color: #fff;
-
+  outline: none;
 }
 .contact-box .btn{
   margin-top: 2rem;
@@ -242,7 +268,62 @@ span{
 .activate {
   display: flex; 
 }
+/* Popup Styling */
+.popup {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
 
+.popup-content {
+  width: clamp(15rem,50vw,30rem);
+  background-color: #6c63ff;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+.popup-content h2{
+  color: #fff;
+
+}
+.popup button {
+  background: #fff;
+  color: #333;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.2s all ease-in-out;
+}
+.popup button:hover{
+  background: none;
+  border: 2px solid #fff;
+  color: black;
+}
+/* Fade effect for form */
+.fade-out {
+  opacity: 0.3;
+  pointer-events: none;
+}
+@keyframes slide-left {
+  100%{
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 @keyframes zoom-in {
   100% {
     transform: scale(1);
@@ -250,48 +331,7 @@ span{
 }
 @keyframes slide-in {
   100% {
-    transform: translateY(0);
     opacity: 1;
   }
 }
-@media screen and (max-width: 480px) {
-  .container {
-    border-radius: 15px;
-    padding: 10px;
-  }
 
-  header {
-    flex-direction: column; /* Stack logo and navbar vertically */
-    text-align: center;
-  }
-
-  .navbar {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .navbar a {
-    font-size: 14px;
-    margin: 0;
-  }
-
-  .home-detail h1 {
-    font-size: 1.8rem;
-  }
-
-  .home-detail h2 {
-    font-size: 1.2rem;
-  }
-
-  .btn {
-    padding: 8px 20px;
-    font-size: 14px;
-  }
-
-  .home-img .image-box {
-    width: 80%;
-    margin: 0 auto;
-    max-width: 250px;
-  }
-}

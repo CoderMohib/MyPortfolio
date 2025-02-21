@@ -1,0 +1,84 @@
+@media screen and (max-width: 850px) {
+  .menu-toggle {
+    display: block;
+  }
+  .close-togle {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 0.6rem;
+    font-size: larger;
+    color: #fff;
+    cursor: pointer;
+  }
+  .close-togle:hover {
+    opacity: 0.8;
+  }
+  .navbar {
+    height: 100vh;
+    width: 10rem;
+    background: linear-gradient(135deg, #1a1a40, #3e1e68, #6d28ed);
+    position: fixed;
+    right: -10rem;
+    top: 0;
+    gap: 0;
+    transition: right 0.4s ease-in-out; /* Smooth slide-in effect */
+    padding-top: 7rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .navbar a {
+    padding: 0.6rem;
+    margin: 0;
+    color: #fff;
+    width: 10rem;
+    text-align: center;
+    gap: 0;
+    border: none;
+  }
+  .navbar a:hover,
+  .navbar a.active {
+    background: linear-gradient(135deg, #2a2a60, #5a2a90, #8a3fff);
+    transition: background 0.3s ease-in-out;
+    border: none;
+    border-radius: 0;
+  }
+  .navbar.right {
+    right: 0;
+  }
+  .home {
+    flex-direction: column-reverse;
+    height: fit-content;
+    padding-top: 5.5rem;
+    margin: 0;
+    align-items: center;
+    gap: 2rem;
+  }
+  .home-detail-header h1,
+  .home-detail-header h2,
+  .home-detail p {
+    text-align: center;
+  }
+  @keyframes slidein {
+    100% {
+      right: 0;
+    }
+  }
+  .home-detail .download-social{
+    margin-top: 2rem;
+    align-items: center;
+    justify-content: center;
+    padding: auto;
+  }
+}
+@media screen and (max-width: 410px){
+  .home-detail .download-social{
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .home-detail .social-icons{
+    margin-left: 0;
+  }
+}
