@@ -1,4 +1,8 @@
 @media screen and (max-width: 850px) {
+  header {
+    position: fixed;
+  }
+
   .menu-toggle {
     display: block;
   }
@@ -16,14 +20,14 @@
     opacity: 0.8;
   }
   .navbar {
-    height: 100vh;
+    height: 100%;
     width: 10rem;
     background: linear-gradient(135deg, #1a1a40, #3e1e68, #6d28ed);
     position: fixed;
     right: -10rem;
     top: 0;
     gap: 0;
-    transition: right 0.4s ease-in-out; /* Smooth slide-in effect */
+    transition: right 0.7s ease-in-out; /* Smooth slide-in effect */
     padding-top: 7rem;
     display: flex;
     flex-direction: column;
@@ -60,7 +64,7 @@
   .home-detail p {
     text-align: center;
   }
-  .home-detail p{
+  .home-detail p {
     hyphens: auto;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -72,7 +76,7 @@
     }
   }
   .home-detail .download-social {
-    margin-top: 2rem;
+    margin-top: 0;
     align-items: center;
     justify-content: center;
     padding: auto;
@@ -82,7 +86,7 @@
   .home-detail .download-social {
     flex-direction: column;
     gap: 2rem;
-    margin-top: 2rem;
+    margin-top: 1.4rem;
   }
   .home-detail .social-icons {
     margin-left: 0;

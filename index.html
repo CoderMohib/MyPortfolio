@@ -32,137 +32,64 @@
   </head>
 
   <body>
-    <div class="container">
-      <header class="animated">
-        <p class="logo">Portfolio.</p>
-        <div class="menu-toggle" id="menu-toggle">
-          <i class="ri-menu-line"></i>
+    <header class="animated">
+      <p class="logo">Portfolio.</p>
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="ri-menu-line"></i>
+      </div>
+      <div class="navbar" id="navbar">
+        <div class="close-togle" id="close-toggle">
+          <i class="ri-close-large-line"></i>
         </div>
-        <div class="navbar" id="navbar">
-          <div class="close-togle" id="close-toggle"><i class="ri-close-large-line"></i></div>
-          <a href="#Home" class="active">Home</a>
-          <a href="#About">About</a>
-          <a href="#Portfolio">Portfolio</a>
-          <a href="#Services">Services</a>
-          <a href="#Contact">Contact</a>
+        <a href="#Home" class="active">Home</a>
+        <a href="#About">About</a>
+        <a href="#Portfolio">Portfolio</a>
+        <a href="#Services">Services</a>
+        <a href="#Contact">Contact</a>
+      </div>
+    </header>
+    <section id="Home" class="home section animated">
+      <div class="home-detail animated-left">
+        <div class="home-detail-header">
+          <h1>Mohib Ali</h1>
+          <h2>Frontend <span>Developer</span></h2>
         </div>
-      </header>
-      <section id="Home" class="home section animated">
-        <div class="home-detail animated-left">
-          <div class="home-detail-header">
-            <h1>Mohib Ali</h1>
-            <h2>Frontend <span>Developer</span></h2>
-          </div>
 
-          <div class="summary">
-            <p>
-              Proficient in HTML, CSS, JavaScript, and ReactJS for creating
-              responsive and dynamic web applications. Currently expanding into
-              back-end development with ExpressJS, NextJS, and MongoDB to build
-              full-stack solutions.
-            </p>
-          </div>
+        <div class="summary">
+          <p>
+            Proficient in HTML, CSS, JavaScript, and ReactJS for creating
+            responsive and dynamic web applications. Currently expanding into
+            back-end development with ExpressJS, NextJS, and MongoDB to build
+            full-stack solutions.
+          </p>
+        </div>
 
-          <div class="download-social">
-            <button class="btn" id="btn">Download CV</button>
-            <div class="social-icons">
-              <a href="https://github.com/CoderMohib" target="_blank"
-                ><i class="ri-github-fill"></i
-              ></a>
-              <a
-                href="https://www.linkedin.com/in/mohib-ali-80b19b294"
-                target="_blank"
-                ><i class="ri-linkedin-fill"></i
-              ></a>
-              <a
-                href="https://www.facebook.com/profile.php?id=100009561216453"
-                target="_blank"
-                ><i class="ri-facebook-circle-fill"></i
-              ></a>
-            </div>
+        <div class="download-social">
+          <button class="btn" id="btn">Download CV</button>
+          <div class="social-icons">
+            <a href="https://github.com/CoderMohib" target="_blank"
+              ><i class="ri-github-fill"></i
+            ></a>
+            <a
+              href="https://www.linkedin.com/in/mohib-ali-80b19b294"
+              target="_blank"
+              ><i class="ri-linkedin-fill"></i
+            ></a>
+            <a
+              href="https://www.facebook.com/profile.php?id=100009561216453"
+              target="_blank"
+              ><i class="ri-facebook-circle-fill"></i
+            ></a>
           </div>
         </div>
-        <div class="home-img animated-right">
-          <div class="image-box">
-            <img src="./Assets/home.png" alt="Mohib Ali" />
-          </div>
+      </div>
+      <div class="home-img animated-right">
+        <div class="image-box">
+          <img src="./Assets/home.png" alt="Mohib Ali" />
         </div>
-      </section>
-
-      <!-- Contact -->
-      <section id="Contact" class="contact section animated-contact">
-        <div class="contact-container">
-          <div class="contact-box">
-            <h2>Let's Work Together</h2>
-            <p class="desc">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt
-              non placeat quas consectetur debitis consequatur facilis est cum
-              exercitationem excepturi.
-            </p>
-            <div class="contact-detail">
-              <i class="ri-phone-fill"></i>
-              <div class="detail">
-                <p>Phone</p>
-                <p>(+92)-324-4213636</p>
-              </div>
-            </div>
-            <div class="contact-detail">
-              <i class="ri-mail-fill"></i>
-              <div class="detail">
-                <p>Email</p>
-                <p>alimohib025@gmail.com</p>
-              </div>
-            </div>
-            <div class="contact-detail">
-              <i class="ri-map-pin-2-fill"></i>
-              <div class="detail">
-                <p>Address</p>
-                <p>Allama Iqal Town, Lahore, Pakistan!</p>
-              </div>
-            </div>
-          </div>
-          <div class="contact-box">
-            <form id="contact-form">
-              <h2 class="heading">Contact<span id="text"></span></h2>
-              <div class="field-box">
-                <input
-                  type="text"
-                  id="fullName"
-                  placeholder="Full Name"
-                  required
-                />
-                <input
-                  type="email"
-                  id="email"
-                  placeholder="Email Address"
-                  required
-                />
-                <input
-                  type="text"
-                  id="phone"
-                  placeholder="Phone Number"
-                  required
-                />
-                <input type="text" id="subject" placeholder="Email Subject" />
-                <textarea
-                  id="message"
-                  placeholder="Your Message"
-                  required
-                ></textarea>
-              </div>
-              <button type="submit" class="btn">Send Message</button>
-            </form>
-          </div>
-        </div>
-        <div id="success-popup" class="popup">
-          <div class="popup-content">
-            <h2>Message Sent Successfully!</h2>
-            <p>Thank you for reaching out. I'll get back to you soon!</p>
-            <button onclick="closePopup()">OK</button>
-          </div>
-        </div>
-      </section>
-    </div>
+      </div>
+    </section>
+    
 
     <script src="script.js"></script>
   </body>

@@ -29,19 +29,19 @@ navLinks.forEach((link) => {
   link.addEventListener("click", activateSection);
 });
 
-let textElement = document.getElementById("text");
-const text = " Me!";
-let index = 0;
+// let textElement = document.getElementById("text");
+// const text = " Me!";
+// let index = 0;
 
-function typeText() {
-  if (index < text.length) {
-    textElement.textContent += text.charAt(index);
-    index++;
-    setTimeout(typeText, 1500);
-  }
-}
+// function typeText() {
+//   if (index < text.length) {
+//     textElement.textContent += text.charAt(index);
+//     index++;
+//     setTimeout(typeText, 1500);
+//   }
+// }
 
-typeText();
+// typeText();
 
 // JavaScript to toggle the menu
 const menuToggle = document.getElementById("menu-toggle");
@@ -49,6 +49,7 @@ const navbar = document.getElementById("navbar");
 const closeToggle = document.getElementById("close-toggle");
 menuToggle.addEventListener("click",()=>{
     navbar.classList.toggle("right");
+    
 })
 closeToggle.addEventListener("click",()=>{
     navbar.classList.remove("right");
