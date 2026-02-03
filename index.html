@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,9 +7,8 @@
     <title>Personal Portfolio Website Using HTML & CSS | Codehal</title>
     <link rel="preload" href="background.jpg" as="image" />
     <link
-      rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-      as="style"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
     />
     <link rel="stylesheet" href="./new.css" />
     <link
@@ -43,6 +42,7 @@
         </div>
         <a href="#Home" class="active">Home</a>
         <a href="#About">About</a>
+        <a href="#Skills">Skills</a>
         <a href="#Portfolio">Portfolio</a>
         <a href="#Services">Services</a>
         <a href="#Contact">Contact</a>
@@ -52,32 +52,39 @@
       <div class="home-detail animated-left">
         <div class="home-detail-header">
           <h1>Mohib Ali</h1>
-          <h2>Frontend <span>Developer</span></h2>
+          <h2 id="typing-text">Full Stack <span>Developer</span></h2>
         </div>
 
         <div class="summary">
           <p>
-            Proficient in HTML, CSS, JavaScript, and ReactJS for creating
-            responsive and dynamic web applications. Currently expanding into
-            back-end development with ExpressJS, NextJS, and MongoDB to build
-            full-stack solutions.
+            Dedicated Full Stack Engineer specializing in architecting
+            high-performance digital ecosystems. From lightning-fast web
+            interfaces using Next.js and AstroJS to scalable mobile applications
+            with React Native and Expo, I deliver production-ready solutions
+            that bridge the gap between sophisticated backend logic and seamless
+            user experiences.
           </p>
         </div>
 
         <div class="download-social">
           <button class="btn" id="btn">Download CV</button>
           <div class="social-icons">
-            <a href="https://github.com/CoderMohib" target="_blank"
+            <a
+              href="https://github.com/CoderMohib"
+              target="_blank"
+              class="github"
               ><i class="ri-github-fill"></i
             ></a>
             <a
               href="https://www.linkedin.com/in/mohib-ali-80b19b294"
               target="_blank"
+              class="linkedin"
               ><i class="ri-linkedin-fill"></i
             ></a>
             <a
               href="https://www.facebook.com/profile.php?id=100009561216453"
               target="_blank"
+              class="facebook"
               ><i class="ri-facebook-circle-fill"></i
             ></a>
           </div>
@@ -85,11 +92,180 @@
       </div>
       <div class="home-img animated-right">
         <div class="image-box">
-          <img src="./Assets/home.png" alt="Mohib Ali" />
+          <img src="./Assets/mohib.png" alt="Mohib Ali" />
         </div>
       </div>
     </section>
-    
+    <section id="About" class="about section animated">
+      <div class="about-detail animated-left">
+        <div class="section-header">
+          <h1>About <span>Me</span></h1>
+        </div>
+        <div class="summary">
+          <p>
+            I am a versatile Full Stack Engineer with a passion for building
+            modern, complex applications. With a toolkit extending from Next.js
+            and AstroJS to Django and cross-platform mobile development, I
+            specialize in transforming conceptual ideas into mission-critical
+            digital products. I am committed to writing clean, maintainable code
+            and leveraging the latest industry standards—including RESTful APIs
+            and advanced database management—to solve real-world technical
+            challenges across the entire web and mobile stack.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="Skills" class="skills section animated">
+      <div class="skills-container animated-left">
+        <div class="section-header">
+          <h1>My <span>Skills</span></h1>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h3>Frontend & UI</h3>
+            <div class="skill-items">
+              <span class="skill-badge"
+                ><i class="ri-nextjs-fill"></i> Next.js</span
+              >
+              <span class="skill-badge"
+                ><i class="ri-rocket-fill"></i> AstroJS</span
+              >
+              <span class="skill-badge"
+                ><i class="ri-reactjs-line"></i> React.js</span
+              >
+              <span class="skill-badge"
+                ><i class="ri-bootstrap-fill"></i> Bootstrap</span
+              >
+              <span class="skill-badge"
+                ><i class="ri-tailwind-css-fill"></i> Tailwind CSS</span
+              >
+              <span class="skill-badge"
+                ><i class="ri-layout-grid-line"></i> Ant Design</span
+              >
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3>Backend & APIs</h3>
+            <div class="skill-items">
+              <span class="skill-badge"
+                ><i class="ri-nodejs-line"></i> Node.js</span
+              >
+              <span class="skill-badge"
+                ><i class="ri-code-s-slash-line"></i> Django</span
+              >
+              <span class="skill-badge"
+                ><i class="ri-api-line"></i> REST APIs</span
+              >
+              <span class="skill-badge"
+                ><i class="ri-instance-line"></i> Express.js</span
+              >
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3>Mobile Development</h3>
+            <div class="skill-items">
+              <span class="skill-badge"
+                ><i class="ri-reactjs-line"></i> React Native</span
+              >
+              <span class="skill-badge"
+                ><i class="ri-box-3-line"></i> Expo</span
+              >
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3>Databases & Cloud</h3>
+            <div class="skill-items">
+              <span class="skill-badge"
+                ><i class="ri-google-fill"></i> Firebase</span
+              >
+              <span class="skill-badge"
+                ><i class="ri-database-2-line"></i> MongoDB</span
+              >
+              <span class="skill-badge"
+                ><i class="ri-database-line"></i> PostgreSQL</span
+              >
+              <span class="skill-badge"
+                ><i class="ri-mysql-line"></i> MySQL</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="Portfolio" class="portfolio section animated">
+      <div class="portfolio-container animated-left">
+        <div class="section-header">
+          <h1>My <span>Work</span></h1>
+        </div>
+        <div class="portfolio-grid">
+          <p>Projects coming soon...</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="Services" class="services section animated">
+      <div class="services-container animated-left">
+        <div class="section-header">
+          <h1>My <span>Services</span></h1>
+        </div>
+        <div class="services-grid">
+          <div class="service-card">
+            <i class="ri-layout-masonry-line"></i>
+            <h3>Web Development</h3>
+            <p>Building high-performance, responsive web applications.</p>
+          </div>
+          <div class="service-card">
+            <i class="ri-server-line"></i>
+            <h3>Backend Solutions</h3>
+            <p>Scalable APIs and robust server-side logic.</p>
+          </div>
+          <div class="service-card">
+            <i class="ri-smartphone-line"></i>
+            <h3>UI/UX Optimization</h3>
+            <p>Creating seamless and intuitive user experiences.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="Contact" class="contact section animated">
+      <div class="contact-container animated-left">
+        <div class="section-header">
+          <h1>Contact <span>Me</span></h1>
+        </div>
+        <form id="contact-form">
+          <div class="input-group">
+            <input type="text" id="fullName" placeholder="Full Name" required />
+            <input
+              type="email"
+              id="email"
+              placeholder="Email Address"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <input type="text" id="phone" placeholder="Phone Number" />
+            <input type="text" id="subject" placeholder="Subject" />
+          </div>
+          <textarea
+            id="message"
+            cols="30"
+            rows="10"
+            placeholder="Your Message"
+            required
+          ></textarea>
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+      </div>
+      <div id="success-popup" class="popup">
+        <div class="popup-content">
+          <h2>Message Sent Successfully!</h2>
+          <button onclick="closePopup()">Close</button>
+        </div>
+      </div>
+    </section>
 
     <script src="script.js"></script>
   </body>

@@ -29,31 +29,63 @@ navLinks.forEach((link) => {
   link.addEventListener("click", activateSection);
 });
 
-// let textElement = document.getElementById("text");
-// const text = " Me!";
-// let index = 0;
+const typingTextElement = document.getElementById("typing-text");
+const phrases = [
+  "Full Stack Developer | MERN + Django",
+  "Next.js & Astro Modern Web Apps",
+  "React Native Mobile App Developer",
+  "REST APIs | Firebase | Scalable Databases",
+];
+let phraseIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+let typingSpeed = 100;
 
-// function typeText() {
-//   if (index < text.length) {
-//     textElement.textContent += text.charAt(index);
-//     index++;
-//     setTimeout(typeText, 1500);
-//   }
-// }
+function type() {
+  const currentPhrase = phrases[phraseIndex];
 
-// typeText();
+  if (isDeleting) {
+    typingTextElement.innerHTML =
+      currentPhrase.substring(0, charIndex - 1) +
+      '<span class="typed-cursor">|</span>';
+    charIndex--;
+    typingSpeed = 50;
+  } else {
+    typingTextElement.innerHTML =
+      currentPhrase.substring(0, charIndex + 1) +
+      '<span class="typed-cursor">|</span>';
+    charIndex++;
+    typingSpeed = 150;
+  }
+
+  if (!isDeleting && charIndex === currentPhrase.length) {
+    isDeleting = true;
+    typingSpeed = 2000; // Pause at the end of the phrase
+  } else if (isDeleting && charIndex === 0) {
+    isDeleting = false;
+    phraseIndex = (phraseIndex + 1) % phrases.length;
+    typingSpeed = 500; // Pause before starting the next phrase
+  }
+
+  setTimeout(type, typingSpeed);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Clear initial text to start animation fresh
+  typingTextElement.innerHTML = '<span class="typed-cursor">|</span>';
+  setTimeout(type, 1000);
+});
 
 // JavaScript to toggle the menu
 const menuToggle = document.getElementById("menu-toggle");
 const navbar = document.getElementById("navbar");
 const closeToggle = document.getElementById("close-toggle");
-menuToggle.addEventListener("click",()=>{
-    navbar.classList.toggle("right");
-    
-})
-closeToggle.addEventListener("click",()=>{
-    navbar.classList.remove("right");
-})
+menuToggle.addEventListener("click", () => {
+  navbar.classList.toggle("right");
+});
+closeToggle.addEventListener("click", () => {
+  navbar.classList.remove("right");
+});
 document
   .getElementById("contact-form")
   .addEventListener("submit", function (event) {
@@ -65,7 +97,9 @@ document
       email: document.getElementById("email").value,
       phone: document.getElementById("phone").value,
       message: document.getElementById("message").value,
-      subject: document.getElementById("subject").value ? document.getElementById("subject").value : "Unknown",
+      subject: document.getElementById("subject").value
+        ? document.getElementById("subject").value
+        : "Unknown",
     };
     emailjs
       .send("service_shiccwq", "template_1wj0uv8", param)
@@ -82,10 +116,10 @@ document
       });
   });
 function closePopup() {
-    const popup = document.getElementById("success-popup");
-    popup.style.display = "none";
-    popup.style.opacity = "0";
-    popup.style.visibility = "hidden";
-  
-    document.getElementById("contact-form").classList.remove("fade-out");
+  const popup = document.getElementById("success-popup");
+  popup.style.display = "none";
+  popup.style.opacity = "0";
+  popup.style.visibility = "hidden";
+
+  document.getElementById("contact-form").classList.remove("fade-out");
 }

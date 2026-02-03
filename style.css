@@ -1,10 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700;800&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
 }
 body {
   background: url("./Assets/background.jpg") no-repeat center / cover;
@@ -13,15 +13,12 @@ body {
   min-height: 100vh;
   height: 100%;
 }
-html,body{
+html,
+body {
   overflow-x: hidden;
 }
 
-
 header {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 6rem;
   padding: 1.75rem 5%;
@@ -32,7 +29,7 @@ header {
 }
 .menu-toggle {
   display: none;
-  font-size: clamp(1.3rem,3vw,1.8rem);
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
   cursor: pointer;
   color: #7a04eb;
 }
@@ -41,13 +38,13 @@ header {
   animation: slide-in 0.5s ease forwards;
   animation-delay: 0.4s;
 }
-.animated-right{
+.animated-right {
   opacity: 0;
   transform: translateX(2rem);
   animation: slide-left 0.5s ease forwards;
   animation-delay: 0.6s;
 }
-.animated-left{
+.animated-left {
   opacity: 0;
   transform: translateX(-2rem);
   animation: slide-left 0.5s ease forwards;
@@ -59,10 +56,12 @@ header {
   animation: slide-in 0.5s ease forwards;
 }
 .logo {
-  font-size: clamp(1.5rem,2vw,2.5rem);
+  font-family: "Sora", sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2.22rem);
   color: #7a04eb;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 800;
+  letter-spacing: -1px;
 }
 .navbar a {
   width: fit-content;
@@ -78,35 +77,69 @@ header {
 .navbar a.active {
   border-color: #fff;
 }
-.close-togle{
+.close-togle {
   display: none;
 }
 .home {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 100vh;
   gap: 3.5rem;
-  padding: 3.75rem 5% 0;
+  padding: 20px 5%;
   color: #fff;
 }
-
+.summary {
+  width: 90%;
+}
+.home-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 .home-detail-header h1 {
-  font-size: clamp(1.3rem, 2.5vw, 2.2rem); 
+  font-family: "Sora", sans-serif;
+  font-size: clamp(2.5rem, 8vw, 4.2rem);
   line-height: 1;
+  font-weight: 800;
 }
 .home-detail-header h2 {
-  font-weight: 500;
-  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+  font-family: "Sora", sans-serif;
+  font-weight: 600;
+  font-size: clamp(1.3rem, 3.5vw, 1.8rem);
+  color: rgba(255, 255, 255, 0.95);
+  display: flex;
+  align-items: center;
+}
+
+.typed-cursor {
+  opacity: 1;
+  animation: blink 0.7s infinite;
+  margin-left: 5px;
+  color: #7a04eb;
+  font-weight: 400;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 .home-detail p {
-  font-size: clamp(1rem, 3vw, 1.2rem);
-  margin: 0.7rem 0 1rem;
+  font-size: clamp(0.95rem, 2vw, 1.2rem);
+  line-height: 1.5;
+  opacity: 0.9;
+  text-align: left;
 }
 .home-detail .download-social {
   display: flex;
   align-items: center;
-  margin-top: 2rem;
+  gap: 20px;
 }
 
 .btn {
@@ -115,7 +148,6 @@ header {
   background: #fff;
   border: 2px solid #fff;
   border-radius: 2.25rem;
-  box-shadow: 0 0 4px #fff;
   color: #333;
   text-decoration: none;
   font-weight: 500;
@@ -128,7 +160,9 @@ header {
   color: #fff;
 }
 .home-detail .social-icons {
-  margin-left: 1.75rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 .home-detail .social-icons a {
   display: inline-flex;
@@ -138,41 +172,54 @@ header {
   font-size: 1.4rem;
   color: #fff;
   text-decoration: none;
-  margin: 0 0.4rem;
   transition: 0.5s;
 }
 
 .home-detail .social-icons a:hover {
-  background: #fff;
-  box-shadow: 0 0 10px #fff;
-  color: #333;
+  transform: translateY(-5px);
+}
+.home-detail .social-icons a.github:hover {
+  background: #000;
+}
+.home-detail .social-icons a.linkedin:hover {
+  background: #0077b5;
+  color: #fff;
+}
+.home-detail .social-icons a.facebook:hover {
+  background: #1877f2;
+  color: #fff;
 }
 .home-img .image-box {
   position: relative;
   width: clamp(200px, 28vw, 400px);
-  height: clamp(200px, 28vw, 400px); 
+  height: clamp(200px, 28vw, 400px);
   border: 2px solid #fff;
   border-radius: 50%;
   box-shadow: 0 0 20px #fff;
+  overflow: hidden;
 
   /* animation: rotate 3s linear infinite;
   animation-delay: 3s; */
 }
 
 .home-img .image-box img {
-  display: absolute;
+  position: absolute;
+  top: 0;
   display: block;
   object-fit: cover;
   width: 100%;
 }
 
-
-.section{
+.section {
   display: none;
+  width: 100%;
+  min-height: calc(100vh - 6rem);
+  color: #fff;
 }
 .activate {
-  display: flex; 
+  display: flex;
 }
+
 /* Popup Styling */
 .popup {
   width: 100%;
@@ -188,20 +235,21 @@ header {
   align-items: center;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s, visibility 0.3s;
+  transition:
+    opacity 0.3s,
+    visibility 0.3s;
 }
 
 .popup-content {
-  width: clamp(15rem,50vw,30rem);
+  width: clamp(15rem, 50vw, 30rem);
   background-color: #6c63ff;
   padding: 20px;
   text-align: center;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
-.popup-content h2{
+.popup-content h2 {
   color: #fff;
-
 }
 .popup button {
   background: #fff;
@@ -213,7 +261,7 @@ header {
   margin-top: 10px;
   transition: 0.2s all ease-in-out;
 }
-.popup button:hover{
+.popup button:hover {
   background: none;
   border: 2px solid #fff;
   color: black;
@@ -224,7 +272,7 @@ header {
   pointer-events: none;
 }
 @keyframes slide-left {
-  100%{
+  100% {
     transform: translateX(0);
     opacity: 1;
   }
@@ -234,6 +282,136 @@ header {
     transform: scale(1);
   }
 }
+/* Section Headers */
+.section-header h1 {
+  font-family: "Sora", sans-serif;
+  font-size: clamp(2.2rem, 6vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+.section-header span {
+  color: #7a04eb;
+}
+
+/* About Section */
+.about-detail {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Skills Section */
+.skills-container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.skill-category {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.skill-category h3 {
+  font-family: "Sora", sans-serif;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  color: #7a04eb;
+  font-size: 1.25rem;
+}
+.skill-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+.skill-badge {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: 0.3s;
+  border: 1px solid transparent;
+}
+.skill-badge:hover {
+  background: rgba(122, 4, 235, 0.2);
+  border-color: #7a04eb;
+  transform: translateY(-3px);
+}
+.skill-badge i {
+  font-size: 1.1rem;
+}
+
+/* Services Section */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.service-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 15px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: 0.3s;
+}
+.service-card:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.15);
+}
+.service-card i {
+  font-size: 3rem;
+  color: #7a04eb;
+  margin-bottom: 1rem;
+}
+
+/* Contact Section */
+.contact-container {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+#contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.input-group {
+  display: flex;
+  gap: 1.5rem;
+}
+.input-group input,
+#contact-form textarea {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+}
+#contact-form textarea {
+  resize: none;
+}
+#contact-form button {
+  align-self: flex-start;
+}
+
 @keyframes slide-in {
   100% {
     opacity: 1;
