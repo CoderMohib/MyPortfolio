@@ -21,7 +21,7 @@ body {
 header {
   width: 100%;
   height: 6rem;
-  padding: 1.75rem 5%;
+  padding: 0 5%; /* Removed top padding to allow navbar to connect */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -56,6 +56,7 @@ header {
   animation: slide-in 0.5s ease forwards;
 }
 .logo {
+  flex-shrink: 0; /* Prevent logo from being squashed */
   font-family: "Sora", sans-serif;
   font-size: clamp(1.5rem, 4vw, 2.22rem);
   color: #7a04eb;
@@ -63,20 +64,59 @@ header {
   font-weight: 800;
   letter-spacing: -1px;
 }
+.navbar {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: none; /* Connect to top edge */
+  padding: 10px 15px; /* Slightly increased for better volume */
+  border-radius: 0 0 25px 25px; /* Curved bottom edges */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  position: relative; /* For sliding indicator */
+  align-self: flex-start; /* Stick to top */
+  margin-right: 0; /* Align perfectly with the 5% page padding */
+}
+.nav-indicator {
+  position: absolute;
+  /* Width, Height, Left, and Top are managed by JS for a perfect flush fit */
+  background: #7a04eb;
+  border-radius: 20px;
+  z-index: 0;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  pointer-events: none;
+}
 .navbar a {
-  width: fit-content;
-  font-size: 1.1rem;
-  color: #fff;
+  font-size: 1rem; /* Increased font size */
+  color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   font-weight: 500;
-  margin-left: 2.1rem;
-  border-bottom: 2px solid transparent;
-  transition: all 0.5s ease;
+  padding: 10px 22px; /* Increased padding to make bar larger */
+  border-radius: 20px;
+  transition: all 0.4s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px; /* More space between icon and text */
+  position: relative;
+  z-index: 1;
 }
-.navbar a:hover,
+.navbar a i {
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+.navbar a:hover {
+  color: #fff;
+}
 .navbar a.active {
-  border-color: #fff;
+  color: #fff;
+  background: transparent; /* Handled by indicator */
 }
+.navbar a.active i {
+  transform: translateY(-1px);
+}
+
 .close-togle {
   display: none;
 }
@@ -95,6 +135,8 @@ header {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  flex: 1; /* Allow it to share space fairly */
+  min-width: 0; /* Crucial for child carousel overflow: hidden to work */
 }
 .home-detail-header h1 {
   font-family: "Sora", sans-serif;
@@ -165,14 +207,17 @@ header {
   gap: 10px;
 }
 .home-detail .social-icons a {
-  display: inline-flex;
-  padding: 0.6rem;
-  border: 2px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 45px;
+  border: 2px solid whitesmoke;
   border-radius: 50%;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   color: #fff;
   text-decoration: none;
-  transition: 0.5s;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .home-detail .social-icons a:hover {
@@ -185,21 +230,34 @@ header {
   background: #0077b5;
   color: #fff;
 }
-.home-detail .social-icons a.facebook:hover {
-  background: #1877f2;
+.home-detail .social-icons a.whatsapp:hover {
+  background: #25d366;
   color: #fff;
+  border-color: #25d366;
 }
+.home-detail .social-icons a.gmail:hover {
+  background: #ea4335;
+  color: #fff;
+  border-color: #ea4335;
+}
+.home-detail .social-icons a.gmail {
+  font-size: 1.3rem; /* Slightly smaller to balance visual weight */
+}
+.home-img {
+  flex-shrink: 0; /* Don't let the text container squish the image */
+}
+
 .home-img .image-box {
   position: relative;
-  width: clamp(200px, 28vw, 400px);
-  height: clamp(200px, 28vw, 400px);
-  border: 2px solid #fff;
+  width: clamp(250px, 30vw, 450px); /* Slightly increased size */
+  height: clamp(250px, 30vw, 450px);
+  border: 2px solid whitesmoke; /* Updated border to match theme */
   border-radius: 50%;
-  box-shadow: 0 0 20px #fff;
+  box-shadow: 0 0 12px whitesmoke;
   overflow: hidden;
-
-  /* animation: rotate 3s linear infinite;
-  animation-delay: 3s; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .home-img .image-box img {
@@ -415,5 +473,124 @@ header {
 @keyframes slide-in {
   100% {
     opacity: 1;
+  }
+}
+
+/* Inline Tech Stack Carousel (Draggable) */
+/* Inline Tech Stack Carousel (Draggable) */
+.tech-carousel-inline {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  cursor: grab;
+  margin: 0.5rem 0;
+  position: relative;
+  user-select: none;
+  touch-action: pan-y;
+  z-index: 10;
+  /* Mask image for fade edges */
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+.tech-carousel-inline:active {
+  cursor: grabbing;
+}
+
+.tech-carousel-inline.dragging {
+  cursor: grabbing;
+}
+
+.tech-carousel-track-inline {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  padding: 0.5rem 0;
+  transition: none;
+  will-change: transform;
+}
+
+.tech-item-inline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  min-width: 80px;
+  flex-shrink: 0;
+}
+
+.tech-item-inline img {
+  width: 36px;
+  height: 36px;
+  filter: grayscale(100%) brightness(0.7);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.tech-item-inline span {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
+  white-space: nowrap;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.tech-item-inline:hover {
+  transform: translateY(-5px) scale(1.05);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(122, 4, 235, 0.5);
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.25),
+    0 0 15px rgba(122, 4, 235, 0.2);
+}
+
+.tech-item-inline:hover img {
+  filter: grayscale(0%) brightness(1);
+  transform: scale(1.1);
+}
+
+.tech-item-inline:hover span {
+  color: #fff;
+}
+
+/* Responsive adjustments for inline carousel */
+@media (max-width: 768px) {
+
+  .tech-carousel-track-inline {
+    gap: 0.8rem;
+  }
+
+  .tech-item-inline {
+    padding: 0.6rem 0.8rem;
+    min-width: 70px;
+  }
+
+  .tech-item-inline img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .tech-item-inline span {
+    font-size: 0.65rem;
   }
 }

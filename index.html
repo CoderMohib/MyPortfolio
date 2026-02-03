@@ -15,6 +15,10 @@
       href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
       rel="stylesheet"
     />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./media.css" />
     <script
@@ -34,18 +38,21 @@
     <header class="animated">
       <p class="logo">Portfolio.</p>
       <div class="menu-toggle" id="menu-toggle">
-        <i class="ri-menu-line"></i>
+        <i class="fa-solid fa-bars-staggered"></i>
       </div>
       <div class="navbar" id="navbar">
         <div class="close-togle" id="close-toggle">
-          <i class="ri-close-large-line"></i>
+          <i class="fa-solid fa-xmark"></i>
         </div>
-        <a href="#Home" class="active">Home</a>
-        <a href="#About">About</a>
-        <a href="#Skills">Skills</a>
-        <a href="#Portfolio">Portfolio</a>
-        <a href="#Services">Services</a>
-        <a href="#Contact">Contact</a>
+        <div class="nav-indicator" id="nav-indicator"></div>
+        <a href="#Home" class="active"
+          ><i class="fa-solid fa-house-chimney"></i> Home</a
+        >
+        <a href="#About"><i class="fa-solid fa-address-card"></i> About</a>
+        <a href="#Skills"><i class="fa-solid fa-microchip"></i> Skills</a>
+        <a href="#Portfolio"><i class="fa-solid fa-rocket"></i> Projects</a>
+        <a href="#Services"><i class="fa-solid fa-cubes"></i> Services</a>
+        <a href="#Contact"><i class="fa-solid fa-headset"></i> Contact</a>
       </div>
     </header>
     <section id="Home" class="home section animated">
@@ -66,6 +73,209 @@
           </p>
         </div>
 
+        <!-- Inline Tech Stack Carousel (Draggable) -->
+        <div class="tech-carousel-inline" id="tech-carousel">
+          <div class="tech-carousel-track-inline" id="tech-track">
+            <div class="tech-item-inline" data-color="#61DAFB">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                alt="React"
+              />
+              <span>React</span>
+            </div>
+            <div class="tech-item-inline" data-color="#000000">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"
+                alt="Next.js"
+              />
+              <span>Next.js</span>
+            </div>
+            <div class="tech-item-inline" data-color="#3178C6">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+                alt="TypeScript"
+              />
+              <span>TypeScript</span>
+            </div>
+            <div class="tech-item-inline" data-color="#F7DF1E">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                alt="JavaScript"
+              />
+              <span>JavaScript</span>
+            </div>
+            <div class="tech-item-inline" data-color="#339933">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+                alt="Node.js"
+              />
+              <span>Node.js</span>
+            </div>
+            <div class="tech-item-inline" data-color="#3776AB">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                alt="Python"
+              />
+              <span>Python</span>
+            </div>
+            <div class="tech-item-inline" data-color="#092E20">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg"
+                alt="Django"
+              />
+              <span>Django</span>
+            </div>
+            <div class="tech-item-inline" data-color="#47A248">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
+                alt="MongoDB"
+              />
+              <span>MongoDB</span>
+            </div>
+            <div class="tech-item-inline" data-color="#4169E1">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+                alt="PostgreSQL"
+              />
+              <span>PostgreSQL</span>
+            </div>
+            <div class="tech-item-inline" data-color="#06B6D4">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
+                alt="TailwindCSS"
+              />
+              <span>Tailwind</span>
+            </div>
+            <div class="tech-item-inline" data-color="#FFCA28">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg"
+                alt="Firebase"
+              />
+              <span>Firebase</span>
+            </div>
+            <div class="tech-item-inline" data-color="#E34F26">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+                alt="HTML5"
+              />
+              <span>HTML5</span>
+            </div>
+            <div class="tech-item-inline" data-color="#1572B6">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+                alt="CSS3"
+              />
+              <span>CSS3</span>
+            </div>
+            <div class="tech-item-inline" data-color="#F05032">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+                alt="Git"
+              />
+              <span>Git</span>
+            </div>
+            <!-- Second set for infinite loop -->
+            <div class="tech-item-inline" data-color="#61DAFB">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                alt="React"
+              />
+              <span>React</span>
+            </div>
+            <div class="tech-item-inline" data-color="#000000">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"
+                alt="Next.js"
+              />
+              <span>Next.js</span>
+            </div>
+            <div class="tech-item-inline" data-color="#3178C6">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+                alt="TypeScript"
+              />
+              <span>TypeScript</span>
+            </div>
+            <div class="tech-item-inline" data-color="#F7DF1E">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                alt="JavaScript"
+              />
+              <span>JavaScript</span>
+            </div>
+            <div class="tech-item-inline" data-color="#339933">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+                alt="Node.js"
+              />
+              <span>Node.js</span>
+            </div>
+            <div class="tech-item-inline" data-color="#3776AB">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                alt="Python"
+              />
+              <span>Python</span>
+            </div>
+            <div class="tech-item-inline" data-color="#092E20">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg"
+                alt="Django"
+              />
+              <span>Django</span>
+            </div>
+            <div class="tech-item-inline" data-color="#47A248">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
+                alt="MongoDB"
+              />
+              <span>MongoDB</span>
+            </div>
+            <div class="tech-item-inline" data-color="#4169E1">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+                alt="PostgreSQL"
+              />
+              <span>PostgreSQL</span>
+            </div>
+            <div class="tech-item-inline" data-color="#06B6D4">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
+                alt="TailwindCSS"
+              />
+              <span>Tailwind</span>
+            </div>
+            <div class="tech-item-inline" data-color="#FFCA28">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg"
+                alt="Firebase"
+              />
+              <span>Firebase</span>
+            </div>
+            <div class="tech-item-inline" data-color="#E34F26">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+                alt="HTML5"
+              />
+              <span>HTML5</span>
+            </div>
+            <div class="tech-item-inline" data-color="#1572B6">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+                alt="CSS3"
+              />
+              <span>CSS3</span>
+            </div>
+            <div class="tech-item-inline" data-color="#F05032">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+                alt="Git"
+              />
+              <span>Git</span>
+            </div>
+          </div>
+        </div>
+
         <div class="download-social">
           <button class="btn" id="btn">Download CV</button>
           <div class="social-icons">
@@ -73,19 +283,24 @@
               href="https://github.com/CoderMohib"
               target="_blank"
               class="github"
-              ><i class="ri-github-fill"></i
+              ><i class="fa-brands fa-github"></i
             ></a>
             <a
               href="https://www.linkedin.com/in/mohib-ali-80b19b294"
               target="_blank"
               class="linkedin"
-              ><i class="ri-linkedin-fill"></i
+              ><i class="fa-brands fa-linkedin-in"></i
             ></a>
             <a
-              href="https://www.facebook.com/profile.php?id=100009561216453"
+              href="https://wa.me/923244213636?text=Hi Mohib, I saw your portfolio and would like to connect!"
               target="_blank"
-              class="facebook"
-              ><i class="ri-facebook-circle-fill"></i
+              class="whatsapp"
+              ><i class="fa-brands fa-whatsapp"></i
+            ></a>
+            <a
+              href="mailto:alimohib025@gmail.com?subject=Project Inquiry&body=Hi Mohib, I'd like to talk about a project."
+              class="gmail"
+              ><i class="fa-solid fa-envelope"></i
             ></a>
           </div>
         </div>
@@ -96,6 +311,7 @@
         </div>
       </div>
     </section>
+
     <section id="About" class="about section animated">
       <div class="about-detail animated-left">
         <div class="section-header">
@@ -126,22 +342,22 @@
             <h3>Frontend & UI</h3>
             <div class="skill-items">
               <span class="skill-badge"
-                ><i class="ri-nextjs-fill"></i> Next.js</span
+                ><i class="fa-solid fa-square-rss"></i> Next.js</span
               >
               <span class="skill-badge"
-                ><i class="ri-rocket-fill"></i> AstroJS</span
+                ><i class="fa-solid fa-rocket"></i> AstroJS</span
               >
               <span class="skill-badge"
-                ><i class="ri-reactjs-line"></i> React.js</span
+                ><i class="fa-brands fa-react"></i> React.js</span
               >
               <span class="skill-badge"
-                ><i class="ri-bootstrap-fill"></i> Bootstrap</span
+                ><i class="fa-brands fa-bootstrap"></i> Bootstrap</span
               >
               <span class="skill-badge"
-                ><i class="ri-tailwind-css-fill"></i> Tailwind CSS</span
+                ><i class="fa-solid fa-palette"></i> Tailwind CSS</span
               >
               <span class="skill-badge"
-                ><i class="ri-layout-grid-line"></i> Ant Design</span
+                ><i class="fa-solid fa-layer-group"></i> Ant Design</span
               >
             </div>
           </div>
@@ -149,16 +365,16 @@
             <h3>Backend & APIs</h3>
             <div class="skill-items">
               <span class="skill-badge"
-                ><i class="ri-nodejs-line"></i> Node.js</span
+                ><i class="fa-brands fa-node-js"></i> Node.js</span
               >
               <span class="skill-badge"
-                ><i class="ri-code-s-slash-line"></i> Django</span
+                ><i class="fa-solid fa-code"></i> Django</span
               >
               <span class="skill-badge"
-                ><i class="ri-api-line"></i> REST APIs</span
+                ><i class="fa-solid fa-cloud-arrow-up"></i> REST APIs</span
               >
               <span class="skill-badge"
-                ><i class="ri-instance-line"></i> Express.js</span
+                ><i class="fa-solid fa-gears"></i> Express.js</span
               >
             </div>
           </div>
@@ -166,10 +382,10 @@
             <h3>Mobile Development</h3>
             <div class="skill-items">
               <span class="skill-badge"
-                ><i class="ri-reactjs-line"></i> React Native</span
+                ><i class="fa-brands fa-react"></i> React Native</span
               >
               <span class="skill-badge"
-                ><i class="ri-box-3-line"></i> Expo</span
+                ><i class="fa-solid fa-mobile-screen"></i> Expo</span
               >
             </div>
           </div>
@@ -177,16 +393,16 @@
             <h3>Databases & Cloud</h3>
             <div class="skill-items">
               <span class="skill-badge"
-                ><i class="ri-google-fill"></i> Firebase</span
+                ><i class="fa-brands fa-google"></i> Firebase</span
               >
               <span class="skill-badge"
-                ><i class="ri-database-2-line"></i> MongoDB</span
+                ><i class="fa-solid fa-database"></i> MongoDB</span
               >
               <span class="skill-badge"
-                ><i class="ri-database-line"></i> PostgreSQL</span
+                ><i class="fa-solid fa-server"></i> PostgreSQL</span
               >
               <span class="skill-badge"
-                ><i class="ri-mysql-line"></i> MySQL</span
+                ><i class="fa-solid fa-table"></i> MySQL</span
               >
             </div>
           </div>
@@ -212,17 +428,17 @@
         </div>
         <div class="services-grid">
           <div class="service-card">
-            <i class="ri-layout-masonry-line"></i>
+            <i class="fa-solid fa-code-merge"></i>
             <h3>Web Development</h3>
             <p>Building high-performance, responsive web applications.</p>
           </div>
           <div class="service-card">
-            <i class="ri-server-line"></i>
+            <i class="fa-solid fa-server"></i>
             <h3>Backend Solutions</h3>
             <p>Scalable APIs and robust server-side logic.</p>
           </div>
           <div class="service-card">
-            <i class="ri-smartphone-line"></i>
+            <i class="fa-solid fa-mobile-screen-button"></i>
             <h3>UI/UX Optimization</h3>
             <p>Creating seamless and intuitive user experiences.</p>
           </div>
