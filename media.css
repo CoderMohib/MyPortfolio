@@ -1,4 +1,12 @@
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 1300px) {
+  .navbar a {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    gap: 8px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
   .menu-toggle {
     display: block;
   }
@@ -16,55 +24,102 @@
     opacity: 0.8;
   }
   .navbar {
-    height: 100vh;
-    width: 10rem;
-    background: linear-gradient(135deg, #1a1a40, #3e1e68, #6d28ed);
+    height: 100%;
+    width: 16rem; /* Slightly wider for icons + text */
+    background: rgba(20, 20, 45, 0.98);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
     position: fixed;
-    right: -10rem;
+    right: -16rem; /* Match the width */
     top: 0;
     gap: 0;
-    transition: right 0.4s ease-in-out; /* Smooth slide-in effect */
-    padding-top: 7rem;
+    transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    padding-top: 6rem;
     display: flex;
     flex-direction: column;
+    border-radius: 0; /* Reset desktop pill radius */
+    border: none;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    margin-right: 0;
+    z-index: 1000;
+  }
+  .nav-indicator {
+    display: none;
   }
   .navbar a {
-    padding: 0.6rem;
+    padding: 1.2rem 2rem;
     margin: 0;
-    color: #fff;
-    width: 10rem;
-    text-align: center;
-    gap: 0;
+    color: rgba(255, 255, 255, 0.8);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
     border: none;
-  }
-  .navbar a:hover,
-  .navbar a.active {
-    background: linear-gradient(135deg, #2a2a60, #5a2a90, #8a3fff);
-    transition: background 0.3s ease-in-out;
-    border: none;
+    font-size: 1.1rem;
     border-radius: 0;
+    background: transparent;
+    transition: all 0.3s ease;
+  }
+  .navbar a i {
+    font-size: 1.35rem;
+    width: 25px;
+    text-align: center;
+  }
+  .navbar a:hover {
+    background: rgba(255, 255, 255, 0.05);
+    padding-left: 2.5rem;
+    color: #fff;
+  }
+  .navbar a.active {
+    background: rgba(122, 4, 235, 0.15);
+    color: #fff;
+    border-left: 4px solid #7a04eb;
+    box-shadow: none;
+    padding-left: 2.5rem;
   }
   .navbar.right {
     right: 0;
   }
   .home {
-    flex-direction: column-reverse;
-    height: fit-content;
-    padding-top: 5.5rem;
-    margin: 0;
+    flex-direction: column-reverse; /* Put image on top for tablets/phones */
+    height: auto;
+    padding: 2rem 5% 2rem; /* Reduced top padding */
     align-items: center;
-    gap: 2rem;
-  }
-  .home-detail-header h1,
-  .home-detail-header h2,
-  .home-detail p {
+    justify-content: flex-start;
+    gap: 1.5rem;
     text-align: center;
   }
-  .home-detail p{
-    hyphens: auto;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    text-align: justify;
+
+  .home-detail {
+    align-items: center;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .home-detail-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .home-detail-header h1 {
+    font-size: clamp(2rem, 9vw, 3.2rem);
+    margin-bottom: 0.3rem;
+  }
+
+  .home-detail-header h2 {
+    justify-content: center;
+    font-size: clamp(1rem, 4vw, 1.6rem);
+  }
+
+  .home-detail p {
+    max-width: 550px;
+    line-height: 1.5;
+    text-align: center;
+    font-size: 0.95rem;
+    opacity: 0.85;
   }
   @keyframes slidein {
     100% {
@@ -72,17 +127,26 @@
     }
   }
   .home-detail .download-social {
-    margin-top: 2rem;
-    align-items: center;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
     justify-content: center;
-    padding: auto;
+    gap: 1rem;
+  }
+
+  .home-img .image-box {
+    width: clamp(200px, 50vw, 320px); /* Smaller on mobile */
+    height: clamp(200px, 50vw, 320px);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  }
+  .section {
+    min-height: auto;
   }
 }
-@media screen and (max-width: 410px) {
+@media screen and (max-width: 576px) {
   .home-detail .download-social {
     flex-direction: column;
-    gap: 2rem;
-    margin-top: 2rem;
+    gap: 1rem;
+    flex-direction: column-reverse;
   }
   .home-detail .social-icons {
     margin-left: 0;
