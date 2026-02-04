@@ -7,60 +7,127 @@
 }
 
 @media screen and (max-width: 1100px) {
+  header {
+    height: 4.5rem; /* More compact for mobile/tablet */
+    padding: 0 4%;
+  }
+  body {
+    padding-top: 4.5rem; /* Offset for fixed header on tablet */
+  }
+
   .menu-toggle {
     display: block;
   }
   .close-togle {
     display: block;
     position: absolute;
-    left: 0;
-    top: 0;
-    padding: 0.6rem;
-    font-size: larger;
+    right: 1.5rem; /* Move to right for better thumb access */
+    top: 1.2rem;
     color: #fff;
     cursor: pointer;
+    z-index: 2002;
+  }
+  .close-togle i {
+    font-size: 2.8rem; /* Even larger for better access */
   }
   .close-togle:hover {
-    opacity: 0.8;
+    transform: scale(1.1);
+  }
+  .no-scroll {
+    overflow: hidden !important;
   }
   .navbar {
-    height: 100%;
-    width: 16rem; /* Slightly wider for icons + text */
-    background: rgba(20, 20, 45, 0.98);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
+    height: 100dvh;
+    width: 11.5rem; /* Narrower for a more professional look */
+    max-width: 80%;
+    background:
+      radial-gradient(
+        circle at 0% 0%,
+        rgba(122, 4, 235, 0.15) 0%,
+        transparent 50%
+      ),
+      rgba(11, 11, 26, 0.98);
+    backdrop-filter: blur(35px);
+    -webkit-backdrop-filter: blur(35px);
     position: fixed;
-    right: -16rem; /* Match the width */
+    right: 0;
+    transform: translateX(100%);
     top: 0;
-    gap: 0;
-    transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    padding-top: 6rem;
+    gap: 2px;
+    transition:
+      transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      visibility 0.5s;
+    padding-top: 5.5rem;
     display: flex;
     flex-direction: column;
-    border-radius: 0; /* Reset desktop pill radius */
+    border-radius: 0;
     border: none;
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
     margin-right: 0;
-    z-index: 1000;
+    z-index: 5001;
+    overflow-x: hidden;
+    visibility: hidden;
   }
+
   .nav-indicator {
-    display: none;
+    display: block !important; /* Re-enable for gliding effect */
+    background: #7a04eb;
+    box-shadow: 0 0 20px rgba(122, 4, 235, 0.4);
+    border-radius: 12px;
+    opacity: 0.9;
   }
+
+  /* Staggered link animation when menu is open */
+  .navbar.right a {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
   .navbar a {
-    padding: 1.2rem 2rem;
-    margin: 0;
-    color: rgba(255, 255, 255, 0.8);
-    width: 100%;
+    height: 3rem; /* Fixed height for perfect alignment */
+    padding: 0 1.5rem;
+    margin: 2px 0.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    width: auto;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 15px;
+    gap: 12px;
     border: none;
-    font-size: 1.1rem;
-    border-radius: 0;
+    font-size: 1rem;
+    border-radius: 12px;
     background: transparent;
-    transition: all 0.3s ease;
+    z-index: 1;
+    transition:
+      all 0.4s cubic-bezier(0.11, 0, 0.5, 0),
+      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 0.6s ease;
+
+    /* Initial state for staggered entrance */
+    transform: translateX(30px);
+    opacity: 0;
+  }
+
+  /* Entrance Staggering Delays */
+  /* Elite Entrance Staggering (Sequential reveal) */
+  .navbar a:nth-of-type(1) {
+    transition-delay: 0.12s, 0.12s, 0.12s;
+  }
+  .navbar a:nth-of-type(2) {
+    transition-delay: 0.18s, 0.18s, 0.18s;
+  }
+  .navbar a:nth-of-type(3) {
+    transition-delay: 0.24s, 0.24s, 0.24s;
+  }
+  .navbar a:nth-of-type(4) {
+    transition-delay: 0.3s, 0.3s, 0.3s;
+  }
+  .navbar a:nth-of-type(5) {
+    transition-delay: 0.36s, 0.36s, 0.36s;
+  }
+  .navbar a:nth-of-type(6) {
+    transition-delay: 0.42s, 0.42s, 0.42s;
   }
   .navbar a i {
     font-size: 1.35rem;
@@ -69,18 +136,21 @@
   }
   .navbar a:hover {
     background: rgba(255, 255, 255, 0.05);
-    padding-left: 2.5rem;
     color: #fff;
+    transform: translateX(4px); /* Micro-interaction */
   }
+
   .navbar a.active {
-    background: rgba(122, 4, 235, 0.15);
     color: #fff;
-    border-left: 4px solid #7a04eb;
+    font-weight: 600;
+    background: transparent; /* Indicator handles background now */
     box-shadow: none;
-    padding-left: 2.5rem;
+    border: none;
   }
+
   .navbar.right {
-    right: 0;
+    transform: translateX(0);
+    visibility: visible;
   }
   .home {
     flex-direction: column-reverse; /* Put image on top for tablets/phones */
@@ -112,6 +182,8 @@
   .home-detail-header h2 {
     justify-content: center;
     font-size: clamp(1rem, 4vw, 1.6rem);
+    word-break: break-word;
+    line-height: 1.3;
   }
 
   .home-detail p {
@@ -143,12 +215,30 @@
   }
 }
 @media screen and (max-width: 576px) {
-  .home-detail .download-social {
-    flex-direction: column;
-    gap: 1rem;
-    flex-direction: column-reverse;
+  header {
+    height: 4rem;
   }
+  body {
+    padding-top: 4rem; /* Offset for fixed header on phone */
+  }
+  .home-detail .download-social {
+    flex-direction: column; /* Primary button on top */
+    gap: 0.75rem;
+    margin: 0;
+  }
+
+  .home-detail .social-icons a {
+    width: 40px;
+    height: 40px;
+    font-size: 1.3rem;
+  }
+
+  .home-detail .social-icons a.gmail {
+    font-size: 1.1rem; /* Proportional Gmail icon */
+  }
+
   .home-detail .social-icons {
     margin-left: 0;
+    gap: 12px;
   }
 }

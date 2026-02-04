@@ -12,15 +12,28 @@ const sections = document.querySelectorAll("section");
 
 const navIndicator = document.getElementById("nav-indicator");
 
-// Function to move indicator to the active link
+// Function to move indicator to the active link with high precision
 function moveIndicator() {
   const activeLink = document.querySelector(".navbar a.active");
-  if (activeLink && navIndicator) {
-    navIndicator.style.width = `${activeLink.offsetWidth}px`;
-    navIndicator.style.height = `${activeLink.offsetHeight}px`;
-    navIndicator.style.left = `${activeLink.offsetLeft}px`;
-    navIndicator.style.top = `${activeLink.offsetTop}px`;
+  if (activeLink && navIndicator && navbar) {
+    const linkRect = activeLink.getBoundingClientRect();
+    const navRect = navbar.getBoundingClientRect();
+
+    // Use absolute bounding box difference for perfect sub-pixel alignment
+    navIndicator.style.width = `${linkRect.width}px`;
+    navIndicator.style.height = `${linkRect.height}px`;
+    navIndicator.style.left = `${linkRect.left - navRect.left}px`;
+    navIndicator.style.top = `${linkRect.top - navRect.top}px`;
   }
+}
+
+// Wrapper to ensure layout is settled before moving indicator
+function updateIndicator() {
+  requestAnimationFrame(() => {
+    moveIndicator();
+    // Second pass after a tiny delay for complex resizing (like Inspect Element)
+    setTimeout(moveIndicator, 50);
+  });
 }
 
 // Set initial active state and move indicator immediately
@@ -29,8 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (homeLink) {
     homeLink.classList.add("active");
     document.getElementById("Home").classList.add("activate");
-    // Short timeout ensures layout is ready for calculation
-    setTimeout(moveIndicator, 100);
+    updateIndicator();
   }
 });
 
@@ -47,7 +59,7 @@ function activateSection(event) {
   sections.forEach((section) => section.classList.remove("activate"));
 
   target.classList.add("active");
-  moveIndicator();
+  updateIndicator();
 
   const sectionId = target.getAttribute("href").substring(1);
   const targetSection = document.getElementById(sectionId);
@@ -61,8 +73,8 @@ navLinks.forEach((link) => {
 });
 
 // Initialize indicator and handle resize
-window.addEventListener("load", moveIndicator);
-window.addEventListener("resize", moveIndicator);
+window.addEventListener("load", updateIndicator);
+window.addEventListener("resize", updateIndicator);
 
 const typingTextElement = document.getElementById("typing-text");
 const phrases = [
@@ -115,11 +127,20 @@ document.addEventListener("DOMContentLoaded", () => {
 const menuToggle = document.getElementById("menu-toggle");
 const navbar = document.getElementById("navbar");
 const closeToggle = document.getElementById("close-toggle");
+
 menuToggle.addEventListener("click", () => {
   navbar.classList.toggle("right");
+  // Toggle scroll lock
+  if (navbar.classList.contains("right")) {
+    document.body.classList.add("no-scroll");
+  } else {
+    document.body.classList.remove("no-scroll");
+  }
 });
+
 closeToggle.addEventListener("click", () => {
   navbar.classList.remove("right");
+  document.body.classList.remove("no-scroll");
 });
 document
   .getElementById("contact-form")
