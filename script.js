@@ -210,12 +210,52 @@ if (techCarousel && techTrack) {
     }
   }
 
+  // Function to apply 3D effect based on position
+  function apply3DEffect() {
+    const containerRect = techCarousel.getBoundingClientRect();
+    const containerCenter = containerRect.left + containerRect.width / 2;
+    const items = techTrack.children;
+
+    for (let item of items) {
+      const itemRect = item.getBoundingClientRect();
+      const itemCenter = itemRect.left + itemRect.width / 2;
+
+      // Distance from center of the carousel (normalized)
+      const distFromCenter = Math.abs(containerCenter - itemCenter);
+      const maxDist = containerRect.width / 1.5; // Influence area
+
+      let normDist = Math.max(0, 1 - distFromCenter / maxDist);
+
+      // Calculate 3D transforms
+      const scale = 0.75 + normDist * 0.55; // Scale between 0.75 and 1.3
+      const translateZ = normDist * 200; // Popping out up to 200px for more depth
+      const rotateY = (itemCenter - containerCenter) * -0.12; // More pronounced rotation for a curved look
+      const opacity = 0.3 + normDist * 0.7; // Better fading at edges
+
+      item.style.transform = `translate3d(0, 0, ${translateZ}px) scale(${scale}) rotateY(${rotateY}deg)`;
+      item.style.opacity = opacity;
+
+      // Dynamic icon coloring and text fading
+      const img = item.querySelector("img");
+      const span = item.querySelector("span");
+      if (img) {
+        const grayscale = (1 - normDist) * 100;
+        const brightness = 0.6 + normDist * 0.4;
+        img.style.filter = `grayscale(${grayscale}%) brightness(${brightness})`;
+      }
+      if (span) {
+        span.style.color = `rgba(255, 255, 255, ${0.4 + normDist * 0.6})`;
+      }
+    }
+  }
+
   // Auto-scroll loop
   function animate() {
     if (!isDown && !isHovered) {
       currentX -= scrollSpeed;
       checkLoop();
       updateTransform();
+      apply3DEffect();
     }
     animationFrameId = requestAnimationFrame(animate);
   }
@@ -239,6 +279,7 @@ if (techCarousel && techTrack) {
 
     checkLoop();
     updateTransform();
+    apply3DEffect();
   });
 
   const stopDragging = () => {
@@ -279,6 +320,7 @@ if (techCarousel && techTrack) {
 
       checkLoop();
       updateTransform();
+      apply3DEffect();
     },
     { passive: true },
   );

@@ -496,24 +496,25 @@ header {
   max-width: 100%;
   overflow: hidden;
   cursor: grab;
-  margin: 0.5rem 0;
   position: relative;
   user-select: none;
   touch-action: pan-y;
   z-index: 10;
+  perspective: 1200px;
+  transform-style: preserve-3d;
   /* Mask image for fade edges */
   mask-image: linear-gradient(
     to right,
     transparent,
-    black 10%,
-    black 90%,
+    black 5%,
+    black 95%,
     transparent
   );
   -webkit-mask-image: linear-gradient(
     to right,
     transparent,
-    black 10%,
-    black 90%,
+    black 5%,
+    black 95%,
     transparent
   );
 }
@@ -528,11 +529,12 @@ header {
 
 .tech-carousel-track-inline {
   display: flex;
-  gap: 1rem;
+  gap: 2.5rem; /* Increased gap for 3D scale and clarity */
   width: max-content;
-  padding: 0.5rem 0;
+  padding: 2.5rem 0; /* Extra vertical space to prevent clipping */
   transition: none;
   will-change: transform;
+  transform-style: preserve-3d;
 }
 
 .tech-item-inline {
@@ -543,18 +545,23 @@ header {
   padding: 0.8rem 1rem;
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(10px);
-  border-radius: 10px;
+  border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.15);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition:
+    transform 0.2s cubic-bezier(0.2, 0, 0.2, 1),
+    opacity 0.2s ease,
+    border-color 0.3s ease;
   cursor: pointer;
-  min-width: 80px;
+  min-width: 90px;
   flex-shrink: 0;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
 }
 
 .tech-item-inline img {
   width: 36px;
   height: 36px;
-  filter: grayscale(100%) brightness(0.7);
+  filter: grayscale(0%) brightness(1); /* Control via JS dynamically */
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
 }
@@ -569,9 +576,8 @@ header {
 }
 
 .tech-item-inline:hover {
-  transform: translateY(-5px) scale(1.05);
   background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(122, 4, 235, 0.5);
+  border-color: rgba(122, 4, 235, 0.8);
   box-shadow:
     0 10px 25px rgba(0, 0, 0, 0.25),
     0 0 15px rgba(122, 4, 235, 0.2);
