@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700;800&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sora: "Sora", sans-serif;
+  --font-jakarta: "Plus Jakarta Sans", sans-serif;
+  --color-primary: #7a04eb;
+}
+
+@layer base {
+  * {
+    @apply m-0 p-0 box-border font-jakarta;
+  }
+  body {
+    @apply min-h-screen h-full pt-24 overflow-x-hidden;
+    background: url("/Assets/background.jpg") no-repeat center / cover;
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(3rem);
+  }
+  html {
+    @apply overflow-x-hidden;
+  }
+
+  /* Responsive body padding for fixed header */
+  @media (max-width: 1100px) {
+    body {
+      @apply pt-22;
+    }
+  }
+  @media (max-width: 576px) {
+    body {
+      @apply pt-22;
+    }
+  }
+}
+
+@layer utilities {
+  .animated {
+    opacity: 0;
+    animation: slide-in 0.5s ease forwards;
+    animation-delay: 0.4s;
+  }
+
+  .animated-right {
+    opacity: 0;
+    transform: translateX(2rem);
+    animation: slide-left 0.5s ease forwards;
+    animation-delay: 0.6s;
+  }
+
+  .animated-left {
+    opacity: 0;
+    transform: translateX(-2rem);
+    animation: slide-left 0.5s ease forwards;
+    animation-delay: 0.6s;
+  }
+
+  .animated-contact {
+    transform: translateY(2rem);
+    opacity: 0;
+    animation: slide-in 0.5s ease forwards;
+  }
+
+  .typed-cursor {
+    opacity: 1;
+    animation: blink 0.7s infinite;
+    margin-left: 5px;
+    color: #7a04eb;
+    font-weight: 400;
+  }
+
+  .no-scroll {
+    overflow: hidden !important;
+  }
+}
+
+/* Keyframes */
+@keyframes slide-in {
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-left {
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes zoom-in {
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

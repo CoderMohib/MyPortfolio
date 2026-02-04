@@ -1,0 +1,317 @@
+---
+const techItems = [
+  { name: "React", icon: "react/react-original.svg", color: "#61DAFB" },
+  { name: "Next.js", icon: "nextjs/nextjs-original.svg", color: "#000000" },
+  {
+    name: "TypeScript",
+    icon: "typescript/typescript-original.svg",
+    color: "#3178C6",
+  },
+  {
+    name: "JavaScript",
+    icon: "javascript/javascript-original.svg",
+    color: "#F7DF1E",
+  },
+  { name: "Node.js", icon: "nodejs/nodejs-original.svg", color: "#339933" },
+  { name: "Python", icon: "python/python-original.svg", color: "#3776AB" },
+  { name: "Django", icon: "django/django-plain.svg", color: "#092E20" },
+  { name: "MongoDB", icon: "mongodb/mongodb-original.svg", color: "#47A248" },
+  {
+    name: "PostgreSQL",
+    icon: "postgresql/postgresql-original.svg",
+    color: "#4169E1",
+  },
+  {
+    name: "Tailwind",
+    icon: "tailwindcss/tailwindcss-original.svg",
+    color: "#06B6D4",
+  },
+  { name: "Firebase", icon: "firebase/firebase-plain.svg", color: "#FFCA28" },
+  { name: "HTML5", icon: "html5/html5-original.svg", color: "#E34F26" },
+  { name: "CSS3", icon: "css3/css3-original.svg", color: "#1572B6" },
+  { name: "Git", icon: "git/git-original.svg", color: "#F05032" },
+];
+
+const doubleTechItems = [...techItems, ...techItems];
+---
+
+<div class="tech-carousel-inline" id="tech-carousel">
+  <div class="tech-carousel-track-inline" id="tech-track">
+    {
+      doubleTechItems.map((item) => (
+        <div class="tech-item-inline" data-color={item.color}>
+          <img
+            src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${item.icon}`}
+            alt={item.name}
+          />
+          <span>{item.name}</span>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  const techCarousel = document.getElementById("tech-carousel");
+  const techTrack = document.getElementById("tech-track");
+
+  if (techCarousel && techTrack) {
+    let isDown = false;
+    let startX;
+    let currentX = 0;
+    let scrollLeft;
+    let isHovered = false;
+    let scrollSpeed = 0.8;
+    let animationFrameId;
+
+    function updateTransform() {
+      if (techTrack) {
+        techTrack.style.transform = `translate3d(${currentX}px, 0, 0)`;
+      }
+    }
+
+    function checkLoop() {
+      if (!techTrack) return;
+      const halfWidth = techTrack.scrollWidth / 2;
+      if (halfWidth === 0) return;
+
+      if (currentX <= -halfWidth) {
+        currentX += halfWidth;
+      } else if (currentX > 0) {
+        currentX -= halfWidth;
+      }
+    }
+
+    function apply3DEffect() {
+      if (!techCarousel || !techTrack) return;
+      const containerRect = techCarousel.getBoundingClientRect();
+      const containerCenter = containerRect.left + containerRect.width / 2;
+      const items = Array.from(techTrack.children) as HTMLElement[];
+
+      for (let item of items) {
+        const itemRect = item.getBoundingClientRect();
+        const itemCenter = itemRect.left + itemRect.width / 2;
+        const distFromCenter = Math.abs(containerCenter - itemCenter);
+        const maxDist = containerRect.width / 1.5;
+
+        let normDist = Math.max(0, 1 - distFromCenter / maxDist);
+        const scale = 0.75 + normDist * 0.55;
+        const translateZ = normDist * 200;
+        const rotateY = (itemCenter - containerCenter) * -0.12;
+        const opacity = 0.3 + normDist * 0.7;
+
+        item.style.transform = `translate3d(0, 0, ${translateZ}px) scale(${scale}) rotateY(${rotateY}deg)`;
+        item.style.opacity = opacity.toString();
+
+        const img = item.querySelector("img");
+        const span = item.querySelector("span");
+        if (img) {
+          const grayscale = (1 - normDist) * 100;
+          const brightness = 0.6 + normDist * 0.4;
+          img.style.filter = `grayscale(${grayscale}%) brightness(${brightness})`;
+        }
+        if (span) {
+          span.style.color = `rgba(255, 255, 255, ${0.4 + normDist * 0.6})`;
+        }
+      }
+    }
+
+    function animate() {
+      if (!isDown && !isHovered) {
+        currentX -= scrollSpeed;
+        checkLoop();
+        updateTransform();
+        apply3DEffect();
+      }
+      animationFrameId = requestAnimationFrame(animate);
+    }
+
+    techCarousel.addEventListener("mousedown", (e) => {
+      isDown = true;
+      techCarousel.classList.add("dragging");
+      const containerRect = techCarousel.getBoundingClientRect();
+      startX = e.clientX - containerRect.left;
+      scrollLeft = currentX;
+    });
+
+    techCarousel.addEventListener("mousemove", (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const containerRect = techCarousel.getBoundingClientRect();
+      const x = e.clientX - containerRect.left;
+      const walk = (x - startX) * 1.5;
+      currentX = scrollLeft + walk;
+
+      checkLoop();
+      updateTransform();
+      apply3DEffect();
+    });
+
+    const stopDragging = () => {
+      isDown = false;
+      techCarousel.classList.remove("dragging");
+    };
+
+    techCarousel.addEventListener("mouseup", stopDragging);
+    techCarousel.addEventListener("mouseleave", () => {
+      isHovered = false;
+      stopDragging();
+    });
+
+    techCarousel.addEventListener("mouseenter", () => {
+      isHovered = true;
+    });
+
+    techCarousel.addEventListener(
+      "touchstart",
+      (e) => {
+        isDown = true;
+        const containerRect = techCarousel.getBoundingClientRect();
+        startX = e.touches[0].clientX - containerRect.left;
+        scrollLeft = currentX;
+      },
+      { passive: true },
+    );
+
+    techCarousel.addEventListener(
+      "touchmove",
+      (e) => {
+        if (!isDown) return;
+        const containerRect = techCarousel.getBoundingClientRect();
+        const x = e.touches[0].clientX - containerRect.left;
+        const walk = (x - startX) * 1.5;
+        currentX = scrollLeft + walk;
+
+        checkLoop();
+        updateTransform();
+        apply3DEffect();
+      },
+      { passive: true },
+    );
+
+    techCarousel.addEventListener("touchend", stopDragging);
+
+    updateTransform();
+    animationFrameId = requestAnimationFrame(animate);
+
+    window.addEventListener("resize", () => {
+      checkLoop();
+      updateTransform();
+    });
+  }
+</script>
+
+<style>
+  .tech-carousel-inline {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    cursor: grab;
+    position: relative;
+    user-select: none;
+    touch-action: pan-y;
+    z-index: 10;
+    perspective: 1200px;
+    transform-style: preserve-3d;
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 15%,
+      black 85%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 15%,
+      black 85%,
+      transparent
+    );
+  }
+
+  .tech-carousel-inline:active {
+    cursor: grabbing;
+  }
+  .tech-carousel-inline.dragging {
+    cursor: grabbing;
+  }
+
+  .tech-carousel-track-inline {
+    display: flex;
+    gap: 2.5rem;
+    width: max-content;
+    padding: 2.5rem 0;
+    transition: none;
+    will-change: transform;
+    transform-style: preserve-3d;
+  }
+
+  .tech-item-inline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1rem;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition:
+      transform 0.2s cubic-bezier(0.2, 0, 0.2, 1),
+      opacity 0.2s ease,
+      border-color 0.3s ease;
+    cursor: pointer;
+    min-width: 90px;
+    flex-shrink: 0;
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+  }
+
+  .tech-item-inline img {
+    width: 36px;
+    height: 36px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+  }
+
+  .tech-item-inline span {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+    white-space: nowrap;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+  }
+
+  .tech-item-inline:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(122, 4, 235, 0.8);
+    box-shadow:
+      0 10px 25px rgba(0, 0, 0, 0.25),
+      0 0 15px rgba(122, 4, 235, 0.2);
+  }
+
+  .tech-item-inline:hover img {
+    transform: scale(1.1);
+  }
+  .tech-item-inline:hover span {
+    color: #fff;
+  }
+
+  @media (max-width: 768px) {
+    .tech-carousel-track-inline {
+      gap: 0.8rem;
+    }
+    .tech-item-inline {
+      padding: 0.6rem 0.8rem;
+      min-width: 70px;
+    }
+    .tech-item-inline img {
+      width: 28px;
+      height: 28px;
+    }
+    .tech-item-inline span {
+      font-size: 0.65rem;
+    }
+  }
+</style>
