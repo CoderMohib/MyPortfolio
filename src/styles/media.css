@@ -1,0 +1,244 @@
+@media screen and (max-width: 1300px) {
+  .navbar a {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    gap: 8px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  header {
+    height: 4.5rem; /* More compact for mobile/tablet */
+    padding: 0 4%;
+  }
+  body {
+    padding-top: 4.5rem; /* Offset for fixed header on tablet */
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+  .close-togle {
+    display: block;
+    position: absolute;
+    right: 1.5rem; /* Move to right for better thumb access */
+    top: 1.2rem;
+    color: #fff;
+    cursor: pointer;
+    z-index: 2002;
+  }
+  .close-togle i {
+    font-size: 2.8rem; /* Even larger for better access */
+  }
+  .close-togle:hover {
+    transform: scale(1.1);
+  }
+  .no-scroll {
+    overflow: hidden !important;
+  }
+  .navbar {
+    height: 100dvh;
+    width: 11.5rem; /* Narrower for a more professional look */
+    max-width: 80%;
+    background:
+      radial-gradient(
+        circle at 0% 0%,
+        rgba(122, 4, 235, 0.15) 0%,
+        transparent 50%
+      ),
+      rgba(11, 11, 26, 0.98);
+    backdrop-filter: blur(35px);
+    -webkit-backdrop-filter: blur(35px);
+    position: fixed;
+    right: 0;
+    transform: translateX(100%);
+    top: 0;
+    gap: 2px;
+    transition:
+      transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      visibility 0.5s;
+    padding-top: 5.5rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0;
+    border: none;
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+    margin-right: 0;
+    z-index: 5001;
+    overflow-x: hidden;
+    visibility: hidden;
+  }
+
+  .nav-indicator {
+    display: block !important; /* Re-enable for gliding effect */
+    background: #7a04eb;
+    box-shadow: 0 0 20px rgba(122, 4, 235, 0.4);
+    border-radius: 12px;
+    opacity: 0.9;
+  }
+
+  /* Staggered link animation when menu is open */
+  .navbar.right a {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .navbar a {
+    height: 3rem; /* Fixed height for perfect alignment */
+    padding: 0 1.5rem;
+    margin: 2px 0.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    border: none;
+    font-size: 1rem;
+    border-radius: 12px;
+    background: transparent;
+    z-index: 1;
+    transition:
+      all 0.4s cubic-bezier(0.11, 0, 0.5, 0),
+      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 0.6s ease;
+
+    /* Initial state for staggered entrance */
+    transform: translateX(30px);
+    opacity: 0;
+  }
+
+  /* Entrance Staggering Delays */
+  /* Elite Entrance Staggering (Sequential reveal) */
+  .navbar a:nth-of-type(1) {
+    transition-delay: 0.12s, 0.12s, 0.12s;
+  }
+  .navbar a:nth-of-type(2) {
+    transition-delay: 0.18s, 0.18s, 0.18s;
+  }
+  .navbar a:nth-of-type(3) {
+    transition-delay: 0.24s, 0.24s, 0.24s;
+  }
+  .navbar a:nth-of-type(4) {
+    transition-delay: 0.3s, 0.3s, 0.3s;
+  }
+  .navbar a:nth-of-type(5) {
+    transition-delay: 0.36s, 0.36s, 0.36s;
+  }
+  .navbar a:nth-of-type(6) {
+    transition-delay: 0.42s, 0.42s, 0.42s;
+  }
+  .navbar a i {
+    font-size: 1.35rem;
+    width: 25px;
+    text-align: center;
+  }
+  .navbar a:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    transform: translateX(4px); /* Micro-interaction */
+  }
+
+  .navbar a.active {
+    color: #fff;
+    font-weight: 600;
+    background: transparent; /* Indicator handles background now */
+    box-shadow: none;
+    border: none;
+  }
+
+  .navbar.right {
+    transform: translateX(0);
+    visibility: visible;
+  }
+  .home {
+    flex-direction: column-reverse; /* Put image on top for tablets/phones */
+    height: auto;
+    padding: 2rem 5% 2rem; /* Reduced top padding */
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .home-detail {
+    align-items: center;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .home-detail-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .home-detail-header h1 {
+    font-size: clamp(2rem, 9vw, 3.2rem);
+    margin-bottom: 0.3rem;
+  }
+
+  .home-detail-header h2 {
+    justify-content: center;
+    font-size: clamp(1rem, 4vw, 1.6rem);
+    word-break: break-word;
+    line-height: 1.3;
+  }
+
+  .home-detail p {
+    max-width: 550px;
+    line-height: 1.5;
+    text-align: center;
+    font-size: 0.95rem;
+    opacity: 0.85;
+  }
+  @keyframes slidein {
+    100% {
+      right: 0;
+    }
+  }
+  .home-detail .download-social {
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .home-img .image-box {
+    width: clamp(200px, 50vw, 320px); /* Smaller on mobile */
+    height: clamp(200px, 50vw, 320px);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  }
+  .section {
+    min-height: auto;
+  }
+}
+@media screen and (max-width: 576px) {
+  header {
+    height: 4rem;
+  }
+  body {
+    padding-top: 4rem; /* Offset for fixed header on phone */
+  }
+  .home-detail .download-social {
+    flex-direction: column; /* Primary button on top */
+    gap: 0.75rem;
+    margin: 0;
+  }
+
+  .home-detail .social-icons a {
+    width: 40px;
+    height: 40px;
+    font-size: 1.3rem;
+  }
+
+  .home-detail .social-icons a.gmail {
+    font-size: 1.1rem; /* Proportional Gmail icon */
+  }
+
+  .home-detail .social-icons {
+    margin-left: 0;
+    gap: 12px;
+  }
+}

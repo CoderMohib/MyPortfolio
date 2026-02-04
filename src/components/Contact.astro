@@ -1,0 +1,142 @@
+---
+
+---
+
+<section id="Contact" class="min-h-auto contact section animated">
+  <div
+    class="w-full max-w-[700px] mx-auto px-[5%] py-8 contact-container animated-left"
+  >
+    <div class="section-header">
+      <h1
+        class="font-['Sora',sans-serif] text-[clamp(2.2rem,6vw,3.2rem)] font-extrabold tracking-[-1.5px] mb-8 text-center"
+      >
+        Contact <span class="text-primary">Me</span>
+      </h1>
+    </div>
+    <form id="contact-form" class="flex flex-col gap-6">
+      <div
+        class="flex gap-6 max-[600px]:flex-col max-[600px]:gap-4 input-group"
+      >
+        <input
+          type="text"
+          id="fullName"
+          placeholder="Full Name"
+          required
+          class="w-full p-4 bg-white/10 border border-white/20 rounded-[10px] text-white text-[1rem] outline-none transition-all duration-300 focus:border-primary focus:bg-white/15"
+        />
+        <input
+          type="email"
+          id="email"
+          placeholder="Email Address"
+          required
+          class="w-full p-4 bg-white/10 border border-white/20 rounded-[10px] text-white text-[1rem] outline-none transition-all duration-300 focus:border-primary focus:bg-white/15"
+        />
+      </div>
+      <div
+        class="flex gap-6 max-[600px]:flex-col max-[600px]:gap-4 input-group"
+      >
+        <input
+          type="text"
+          id="phone"
+          placeholder="Phone Number"
+          class="w-full p-4 bg-white/10 border border-white/20 rounded-[10px] text-white text-[1rem] outline-none transition-all duration-300 focus:border-primary focus:bg-white/15"
+        />
+        <input
+          type="text"
+          id="subject"
+          placeholder="Subject"
+          class="w-full p-4 bg-white/10 border border-white/20 rounded-[10px] text-white text-[1rem] outline-none transition-all duration-300 focus:border-primary focus:bg-white/15"
+        />
+      </div>
+      <textarea
+        id="message"
+        cols="30"
+        rows="10"
+        placeholder="Your Message"
+        required
+        class="w-full p-4 bg-white/10 border border-white/20 rounded-[10px] text-white text-[1rem] outline-none transition-all duration-300 focus:border-primary focus:bg-white/15 resize-none"
+      ></textarea>
+      <button
+        type="submit"
+        class="self-start px-7 py-3 bg-white border-2 border-white rounded-[2.25rem] text-[#333] font-medium cursor-pointer transition-all duration-300 hover:bg-transparent hover:text-white btn"
+        >Send Message</button
+      >
+    </form>
+  </div>
+  <div
+    id="success-popup"
+    class="fixed top-0 left-0 w-full h-full bg-black/60 hidden justify-center items-center z-50 opacity-0 invisible transition-all duration-300 popup"
+  >
+    <div
+      class="w-[clamp(15rem,50vw,30rem)] bg-[#6c63ff] p-8 text-center rounded-[15px] shadow-[0_10px_30px_rgba(0,0,0,0.3)] popup-content"
+    >
+      <h2 class="text-white mb-6 text-2xl font-bold">
+        Message Sent Successfully!
+      </h2>
+      <button
+        id="close-popup"
+        class="bg-white text-[#333] border-2 border-transparent rounded-[20px] px-7 py-3 cursor-pointer transition-all duration-300 hover:bg-transparent hover:border-white hover:text-white font-medium"
+        >Close</button
+      >
+    </div>
+  </div>
+</section>
+
+<script>
+  import emailjs from "@emailjs/browser";
+
+  const form = document.getElementById("contact-form") as HTMLFormElement;
+  const popup = document.getElementById("success-popup");
+  const closeBtn = document.getElementById("close-popup");
+
+  if (form) {
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const param = {
+        name: (document.getElementById("fullName") as HTMLInputElement).value,
+        email: (document.getElementById("email") as HTMLInputElement).value,
+        phone: (document.getElementById("phone") as HTMLInputElement).value,
+        message: (document.getElementById("message") as HTMLTextAreaElement)
+          .value,
+        subject:
+          (document.getElementById("subject") as HTMLInputElement).value ||
+          "Unknown",
+      };
+
+      emailjs.init("u7vBmFzitd3j-DlJn"); // Use the key from original index.html
+
+      emailjs
+        .send("service_shiccwq", "template_1wj0uv8", param)
+        .then(() => {
+          form.classList.add("fade-out");
+          if (popup) {
+            popup.style.opacity = "1";
+            popup.style.visibility = "visible";
+            popup.style.display = "flex";
+          }
+          form.reset();
+        })
+        .catch((error) => {
+          alert("Failed to send email. Please try again.");
+          console.error("EmailJS Error:", error);
+        });
+    });
+  }
+
+  if (closeBtn && popup) {
+    closeBtn.addEventListener("click", () => {
+      popup.style.display = "none";
+      popup.style.opacity = "0";
+      popup.style.visibility = "hidden";
+      form?.classList.remove("fade-out");
+    });
+  }
+</script>
+
+<style>
+  .fade-out {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+</style>

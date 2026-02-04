@@ -12,6 +12,7 @@ body {
   background-color: rgb(255, 255, 255, 0.6);
   min-height: 100vh;
   height: 100%;
+  padding-top: 6rem; /* Match header height to prevent content overlap */
 }
 html,
 body {
@@ -21,11 +22,16 @@ body {
 header {
   width: 100%;
   height: 6rem;
-  padding: 0 5%; /* Removed top padding to allow navbar to connect */
+  padding: 0 5%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 100;
+  z-index: 5000;
+  position: fixed; /* Keep pinned to top */
+  top: 0;
+  left: 0;
+  background: rgba(15, 15, 35, 0.1); /* Subtle background for fixed state */
+  backdrop-filter: blur(10px);
 }
 .menu-toggle {
   display: none;
@@ -67,6 +73,9 @@ header {
 .navbar {
   display: flex;
   align-items: center;
+  position: fixed;
+  top: 0rem; /* Aligned with logo in header */
+  right: 5%;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
@@ -75,9 +84,7 @@ header {
   padding: 10px 15px; /* Slightly increased for better volume */
   border-radius: 0 0 25px 25px; /* Curved bottom edges */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  position: relative; /* For sliding indicator */
-  align-self: flex-start; /* Stick to top */
-  margin-right: 0; /* Align perfectly with the 5% page padding */
+  z-index: 5001;
 }
 .nav-indicator {
   position: absolute;
@@ -89,16 +96,17 @@ header {
   pointer-events: none;
 }
 .navbar a {
-  font-size: 1rem; /* Increased font size */
+  font-size: 1rem;
   color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   font-weight: 500;
-  padding: 10px 22px; /* Increased padding to make bar larger */
+  padding: 10px 22px;
   border-radius: 20px;
   transition: all 0.4s ease;
   display: flex;
   align-items: center;
-  gap: 12px; /* More space between icon and text */
+  gap: 12px;
+  white-space: nowrap; /* Prevent layout breakage on resize */
   position: relative;
   z-index: 1;
 }
@@ -151,6 +159,7 @@ header {
   color: rgba(255, 255, 255, 0.95);
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .typed-cursor {
@@ -262,10 +271,14 @@ header {
 
 .home-img .image-box img {
   position: absolute;
-  top: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: block;
   object-fit: cover;
   width: 100%;
+  height: 100%;
+  object-position: center top;
 }
 
 .section {
@@ -483,24 +496,25 @@ header {
   max-width: 100%;
   overflow: hidden;
   cursor: grab;
-  margin: 0.5rem 0;
   position: relative;
   user-select: none;
   touch-action: pan-y;
   z-index: 10;
+  perspective: 1200px;
+  transform-style: preserve-3d;
   /* Mask image for fade edges */
   mask-image: linear-gradient(
     to right,
     transparent,
-    black 10%,
-    black 90%,
+    black 5%,
+    black 95%,
     transparent
   );
   -webkit-mask-image: linear-gradient(
     to right,
     transparent,
-    black 10%,
-    black 90%,
+    black 5%,
+    black 95%,
     transparent
   );
 }
@@ -515,11 +529,12 @@ header {
 
 .tech-carousel-track-inline {
   display: flex;
-  gap: 1rem;
+  gap: 2.5rem; /* Increased gap for 3D scale and clarity */
   width: max-content;
-  padding: 0.5rem 0;
+  padding: 2.5rem 0; /* Extra vertical space to prevent clipping */
   transition: none;
   will-change: transform;
+  transform-style: preserve-3d;
 }
 
 .tech-item-inline {
@@ -530,18 +545,23 @@ header {
   padding: 0.8rem 1rem;
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(10px);
-  border-radius: 10px;
+  border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.15);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition:
+    transform 0.2s cubic-bezier(0.2, 0, 0.2, 1),
+    opacity 0.2s ease,
+    border-color 0.3s ease;
   cursor: pointer;
-  min-width: 80px;
+  min-width: 90px;
   flex-shrink: 0;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
 }
 
 .tech-item-inline img {
   width: 36px;
   height: 36px;
-  filter: grayscale(100%) brightness(0.7);
+  filter: grayscale(0%) brightness(1); /* Control via JS dynamically */
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
 }
@@ -556,9 +576,8 @@ header {
 }
 
 .tech-item-inline:hover {
-  transform: translateY(-5px) scale(1.05);
   background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(122, 4, 235, 0.5);
+  border-color: rgba(122, 4, 235, 0.8);
   box-shadow:
     0 10px 25px rgba(0, 0, 0, 0.25),
     0 0 15px rgba(122, 4, 235, 0.2);
@@ -575,7 +594,6 @@ header {
 
 /* Responsive adjustments for inline carousel */
 @media (max-width: 768px) {
-
   .tech-carousel-track-inline {
     gap: 0.8rem;
   }

@@ -1,0 +1,174 @@
+---
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1); // remove the first "/"
+---
+
+<div
+  class="fixed top-0 right-[5%] flex items-center bg-white/5 backdrop-blur-[15px] border border-white/10 border-t-0 px-[15px] py-[10px] rounded-b-[25px] shadow-[0_10px_30px_rgba(0,0,0,0.15)] z-5001 max-[1100px]:fixed max-[1100px]:top-0 max-[1100px]:-right-full max-[1100px]:w-46 max-[1100px]:max-w-[80%] max-[1100px]:h-dvh max-[1100px]:flex-col max-[1100px]:bg-[radial-gradient(circle_at_0%_0%,rgba(122,4,235,0.15)_0%,transparent_50%),rgba(11,11,26,0.98)] max-[1100px]:backdrop-blur-[35px] max-[1100px]:transition-[transform,visibility] max-[1100px]:duration-500 max-[1100px]:ease-[cubic-bezier(0.16,1,0.3,1)] max-[1100px]:pt-22 max-[1100px]:border-l max-[1100px]:border-l-white/12 max-[1100px]:shadow-[-10px_0_30px_rgba(0,0,0,0.3)] max-[1100px]:mr-0 max-[1100px]:translate-x-full max-[1100px]:invisible [&.right]:max-[1100px]:translate-x-0 [&.right]:max-[1100px]:visible navbar"
+  id="navbar"
+>
+  <div
+    class="hidden max-[1100px]:block max-[1100px]:absolute max-[1100px]:top-[1.2rem] max-[1100px]:right-6 max-[1100px]:text-white max-[1100px]:cursor-pointer max-[1100px]:z-5002 hover:scale-110 transition-transform close-togle"
+    id="close-toggle"
+  >
+    <i class="fa-solid fa-xmark text-[2.8rem]"></i>
+  </div>
+  <div
+    class="absolute bg-primary rounded-[20px] z-0 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] pointer-events-none max-[1100px]:block max-[1100px]:shadow-[0_0_20px_rgba(122,4,235,0.4)] max-[1100px]:rounded-[12px] max-[1100px]:opacity-90 nav-indicator"
+    id="nav-indicator"
+  >
+  </div>
+
+  <a
+    href="/"
+    class:list={[
+      "text-[1rem] text-white/70 font-medium px-[22px] py-[10px] rounded-[20px] transition-all duration-400 ease-in-out flex items-center gap-[12px] whitespace-nowrap relative z-10 hover:text-white max-[1300px]:px-[12px] max-[1300px]:text-[0.9rem] max-[1300px]:gap-[8px] max-[1100px]:h-12 max-[1100px]:px-6 max-[1100px]:mx-[2px] max-[1100px]:my-2 max-[1100px]:w-auto max-[1100px]:justify-start max-[1100px]:rounded-[12px] max-[1100px]:bg-transparent max-[1100px]:translate-x-[30px] max-[1100px]:opacity-0 hover:max-[1100px]:translate-x-[4px] hover:max-[1100px]:bg-white/5",
+      { "active text-white": pathname === "/" },
+    ]}
+    ><i
+      class="text-[1.1rem] transition-transform duration-300 ease-out fa-solid fa-house-chimney max-[1100px]:text-[1.35rem] max-[1100px]:w-[25px] max-[1100px]:text-center"
+    ></i> Home</a
+  >
+  <a
+    href="/about"
+    class:list={[
+      "text-[1rem] text-white/70 font-medium px-[22px] py-[10px] rounded-[20px] transition-all duration-400 ease-in-out flex items-center gap-[12px] whitespace-nowrap relative z-10 hover:text-white max-[1300px]:px-[12px] max-[1300px]:text-[0.9rem] max-[1300px]:gap-[8px] max-[1100px]:h-12 max-[1100px]:px-6 max-[1100px]:mx-[2px] max-[1100px]:my-2 max-[1100px]:w-auto max-[1100px]:justify-start max-[1100px]:rounded-[12px] max-[1100px]:bg-transparent max-[1100px]:translate-x-[30px] max-[1100px]:opacity-0 hover:max-[1100px]:translate-x-[4px] hover:max-[1100px]:bg-white/5",
+      { "active text-white": pathname === "/about" || pathname === "/about/" },
+    ]}
+    ><i
+      class="text-[1.1rem] transition-transform duration-300 ease-out fa-solid fa-address-card max-[1100px]:text-[1.35rem] max-[1100px]:w-[25px] max-[1100px]:text-center"
+    ></i> About</a
+  >
+  <a
+    href="/skills"
+    class:list={[
+      "text-[1rem] text-white/70 font-medium px-[22px] py-[10px] rounded-[20px] transition-all duration-400 ease-in-out flex items-center gap-[12px] whitespace-nowrap relative z-10 hover:text-white max-[1300px]:px-[12px] max-[1300px]:text-[0.9rem] max-[1300px]:gap-[8px] max-[1100px]:h-12 max-[1100px]:px-6 max-[1100px]:mx-[2px] max-[1100px]:my-2 max-[1100px]:w-auto max-[1100px]:justify-start max-[1100px]:rounded-[12px] max-[1100px]:bg-transparent max-[1100px]:translate-x-[30px] max-[1100px]:opacity-0 hover:max-[1100px]:translate-x-[4px] hover:max-[1100px]:bg-white/5",
+      {
+        "active text-white": pathname === "/skills" || pathname === "/skills/",
+      },
+    ]}
+    ><i
+      class="text-[1.1rem] transition-transform duration-300 ease-out fa-solid fa-microchip max-[1100px]:text-[1.35rem] max-[1100px]:w-[25px] max-[1100px]:text-center"
+    ></i> Skills</a
+  >
+  <a
+    href="/portfolio"
+    class:list={[
+      "text-[1rem] text-white/70 font-medium px-[22px] py-[10px] rounded-[20px] transition-all duration-400 ease-in-out flex items-center gap-[12px] whitespace-nowrap relative z-10 hover:text-white max-[1300px]:px-[12px] max-[1300px]:text-[0.9rem] max-[1300px]:gap-[8px] max-[1100px]:h-12 max-[1100px]:px-6 max-[1100px]:mx-[2px] max-[1100px]:my-2 max-[1100px]:w-auto max-[1100px]:justify-start max-[1100px]:rounded-[12px] max-[1100px]:bg-transparent max-[1100px]:translate-x-[30px] max-[1100px]:opacity-0 hover:max-[1100px]:translate-x-[4px] hover:max-[1100px]:bg-white/5",
+      {
+        "active text-white":
+          pathname === "/portfolio" || pathname === "/portfolio/",
+      },
+    ]}
+    ><i
+      class="text-[1.1rem] transition-transform duration-300 ease-out fa-solid fa-rocket max-[1100px]:text-[1.35rem] max-[1100px]:w-[25px] max-[1100px]:text-center"
+    ></i> Projects</a
+  >
+  <a
+    href="/services"
+    class:list={[
+      "text-[1rem] text-white/70 font-medium px-[22px] py-[10px] rounded-[20px] transition-all duration-400 ease-in-out flex items-center gap-[12px] whitespace-nowrap relative z-10 hover:text-white max-[1300px]:px-[12px] max-[1300px]:text-[0.9rem] max-[1300px]:gap-[8px] max-[1100px]:h-12 max-[1100px]:px-6 max-[1100px]:mx-[2px] max-[1100px]:my-2 max-[1100px]:w-auto max-[1100px]:justify-start max-[1100px]:rounded-[12px] max-[1100px]:bg-transparent max-[1100px]:translate-x-[30px] max-[1100px]:opacity-0 hover:max-[1100px]:translate-x-[4px] hover:max-[1100px]:bg-white/5",
+      {
+        "active text-white":
+          pathname === "/services" || pathname === "/services/",
+      },
+    ]}
+    ><i
+      class="text-[1.1rem] transition-transform duration-300 ease-out fa-solid fa-cubes max-[1100px]:text-[1.35rem] max-[1100px]:w-[25px] max-[1100px]:text-center"
+    ></i> Services</a
+  >
+  <a
+    href="/contact"
+    class:list={[
+      "text-[1rem] text-white/70 font-medium px-[22px] py-[10px] rounded-[20px] transition-all duration-400 ease-in-out flex items-center gap-[12px] whitespace-nowrap relative z-10 hover:text-white max-[1300px]:px-[12px] max-[1300px]:text-[0.9rem] max-[1300px]:gap-[8px] max-[1100px]:h-12 max-[1100px]:px-6 max-[1100px]:mx-[2px] max-[1100px]:my-2 max-[1100px]:w-auto max-[1100px]:justify-start max-[1100px]:rounded-[12px] max-[1100px]:bg-transparent max-[1100px]:translate-x-[30px] max-[1100px]:opacity-0 hover:max-[1100px]:translate-x-[4px] hover:max-[1100px]:bg-white/5",
+      {
+        "active text-white":
+          pathname === "/contact" || pathname === "/contact/",
+      },
+    ]}
+    ><i
+      class="text-[1.1rem] transition-transform duration-300 ease-out fa-solid fa-headset max-[1100px]:text-[1.35rem] max-[1100px]:w-[25px] max-[1100px]:text-center"
+    ></i> Contact</a
+  >
+</div>
+
+<script>
+  const navIndicator = document.getElementById("nav-indicator");
+  const navbar = document.getElementById("navbar");
+  const menuToggle = document.getElementById("menu-toggle");
+  const closeToggle = document.getElementById("close-toggle");
+
+  function moveIndicator() {
+    const activeLink = document.querySelector(".navbar a.active");
+    if (activeLink && navIndicator && navbar) {
+      const linkRect = activeLink.getBoundingClientRect();
+      const navRect = navbar.getBoundingClientRect();
+
+      navIndicator.style.width = `${linkRect.width}px`;
+      navIndicator.style.height = `${linkRect.height}px`;
+      navIndicator.style.left = `${linkRect.left - navRect.left}px`;
+      navIndicator.style.top = `${linkRect.top - navRect.top}px`;
+    }
+  }
+
+  function updateIndicator() {
+    requestAnimationFrame(() => {
+      moveIndicator();
+      setTimeout(moveIndicator, 50);
+    });
+  }
+
+  window.addEventListener("load", updateIndicator);
+  window.addEventListener("resize", updateIndicator);
+
+  // Initial active state
+  document.addEventListener("DOMContentLoaded", () => {
+    updateIndicator();
+  });
+
+  // Mobile menu logic
+  if (menuToggle) {
+    menuToggle.addEventListener("click", () => {
+      navbar?.classList.toggle("right");
+      if (navbar?.classList.contains("right")) {
+        document.body.classList.add("no-scroll");
+      } else {
+        document.body.classList.remove("no-scroll");
+      }
+    });
+  }
+
+  if (closeToggle) {
+    closeToggle.addEventListener("click", () => {
+      navbar?.classList.remove("right");
+      document.body.classList.remove("no-scroll");
+    });
+  }
+</script>
+
+<style>
+  /* Staggered link animation when menu is open */
+  .navbar.right a {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  /* Entrance Staggering Delays */
+  .navbar a:nth-of-type(1) {
+    transition-delay: 0.12s;
+  }
+  .navbar a:nth-of-type(2) {
+    transition-delay: 0.18s;
+  }
+  .navbar a:nth-of-type(3) {
+    transition-delay: 0.24s;
+  }
+  .navbar a:nth-of-type(4) {
+    transition-delay: 0.3s;
+  }
+  .navbar a:nth-of-type(5) {
+    transition-delay: 0.36s;
+  }
+  .navbar a:nth-of-type(6) {
+    transition-delay: 0.42s;
+  }
+</style>
